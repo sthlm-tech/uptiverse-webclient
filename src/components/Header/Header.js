@@ -1,0 +1,20 @@
+import React from 'react';
+import './Header.css';
+import Link from '../Link/Link';
+import NavigationContainer from './../../containers/NavigationContainer';
+import logoUrl from './logo.png';
+//<Navigation className={s.nav} />
+function Header() {
+  return (
+    <div className="root">
+      <div className="container">
+        <NavigationContainer className="nav" />
+        <Link className="brand" to="/">
+          <img src={logoUrl} height="38" alt="React" />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default Header;

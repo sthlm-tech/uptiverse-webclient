@@ -1,0 +1,13 @@
+@import '../../components/variables.css';
+
+@font-face{
+  font-family: 'josefin-sans';
+  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
+}
+
+.heading{
+  font-family: 'josefin-sans';
+  font-size: 50px;
+  text-align: center;
+  margin-top: 100px;
+}
