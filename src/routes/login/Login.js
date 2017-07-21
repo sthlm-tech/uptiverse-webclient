@@ -5,7 +5,7 @@ class Login extends Component {
   render() {
     return (
       <Layout>
-        <a href="http://localhost:5000/authentication/login/google?url=http://localhost:3000">login</a>
+        <a href="http://authentication.uptiverse.se/authentication/login/google?url=https://uptiverse-webclient.herokuapp.com">login</a>
       </Layout>
     );
   }
