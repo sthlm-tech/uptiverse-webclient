@@ -24,7 +24,7 @@ export const setUserIsAuthenticated = (isAuthenticated) => {
 
 export const getAuthenticatedUser = input => dispatch => {
   dispatch({ type: GET_AUTHENTICATED_USER_STARTED });
-  return fetch('http://localhost:5000/authentication/validation/user', {credentials: 'include'})
+  return fetch('http://authentication.uptiverse.se/authentication/validation/user', {credentials: 'include'})
     .then(checkStatus)
     .then(parseJSON)
     .then(function(json) {
