@@ -8,7 +8,7 @@ class NotFound extends Component {
     return (
       <Layout className="notfound">
         <Loader>
-          <h1>Page can not be found.</h1>
+          <h1>Page can not be found</h1>
           <p><i>Have you tried looking under the rug?</i></p>
         </Loader>
       </Layout>
