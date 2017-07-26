@@ -1,18 +1,26 @@
-/**
- * React Starter Kit (https://www.reactstarterkit.com/)
- *
- * Copyright © 2014-2016 Kriasoft, LLC. All rights reserved.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.txt file in the root directory of this source tree.
- */
+@font-face{
+  font-family: 'josefin-sans';
+  src: url('./../assets/fonts/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
+}
 
 :root {
   /*
    * Typography
    * ======================================================================== */
 
-  --font-family-base: 'Segoe UI', 'HelveticaNeue-Light', sans-serif;
+  --font-family-header: 'josefin-sans', 'Helvetica Neue', sans-serif;
+  --font-family-subheader: 'Helvetica Neue', sans-serif;
+  --font-family-base: 'Segoe UI', 'Helvetica Neue', sans-serif;
+
+  /*
+   * Typography
+   * ======================================================================== */
+
+  --color-primary: rgba(51, 51, 51, 1.0);
+  --color-secondary: rgba(51, 51, 51, 0.6);
+
+  --color-primary-gray: rgba(51, 51, 51, 1.0);
+  --color-secondary-gray: rgba(51, 51, 51, 0.6);
 
   /*
    * Layout

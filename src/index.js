@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Router from 'universal-router';
 import history from './core/history';
-import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 import configureStore from "./store";
 import routes from './routes';
@@ -39,4 +38,6 @@ function onLocationChange(location) {
   });
 }
 
-registerServiceWorker();
+//Re-add this when https is working.
+//import registerServiceWorker from './registerServiceWorker';
+//registerServiceWorker();

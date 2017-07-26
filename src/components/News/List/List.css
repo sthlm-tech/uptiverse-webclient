@@ -1,17 +1,22 @@
 @import '../../variables.css';
 
-@font-face{
-  font-family: 'josefin-sans';
-  src: url('/josefin-sans/JosefinSans-SemiBold.ttf') format('truetype');
-}
-
 .newsList{
   margin-left:auto;
   margin-right:auto;
   padding-left: 30px;
   padding-right: 30px;
   margin-bottom: 50px;
-  max-width:700px;
+}
+
+.newsList h2 {
+  font-family: var(--font-family-subheader);
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.newsList p {
+  font-family: var(--font-family-base);
+  font-weight: 200;
 }
 
 .newsList .news {
@@ -27,18 +32,12 @@
   font-size: 1.125em;
 }
 
-.newsList .title,
-.newsList .newsDesc {
+.newsList .title, .newsList .newsDesc {
   display: block;
 }
 
 .newsList .link{
   color:#333333;
   font-weight: 400;
-}
-
-.loader{
-  display: inline-block;
-  margin-left: auto;
-  margin-right: auto;
+  padding: 0px;
 }

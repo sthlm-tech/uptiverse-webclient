@@ -10,7 +10,7 @@ function Header() {
       <div className="container">
         <NavigationContainer className="nav" />
         <Link className="brand" to="/">
-          <img src={logoUrl} height="38" alt="React" />
+          <img src={logoUrl} height="50" alt="Start page" />
         </Link>
       </div>
     </div>
