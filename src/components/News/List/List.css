@@ -9,6 +9,7 @@
 }
 
 .newsList h2 {
+  color: var(--color-header-primary);
   font-family: var(--font-family-subheader);
   font-size: 30px;
   font-weight: 500;

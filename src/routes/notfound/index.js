@@ -3,5 +3,9 @@ import NotFound from './NotFound';
 
 export default {
   path: '/*',
-  action: () => <NotFound />
+  action () {
+    return {
+      component: <NotFound />
+    };
+  }
 };

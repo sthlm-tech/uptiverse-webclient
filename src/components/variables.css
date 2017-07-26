@@ -15,13 +15,19 @@
   /*
    * Typography
    * ======================================================================== */
-
-  --color-primary: rgba(51, 51, 51, 1.0);
-  --color-secondary: rgba(51, 51, 51, 0.6);
+  --color-primary-green: rgba(144, 165, 152, 1.0);
+  --color-secondary-green: rgba(144, 165, 152, 0.6);
+  --color-secondary-dark-green: rgba(111, 130, 118, 0.9);
 
   --color-primary-gray: rgba(51, 51, 51, 1.0);
   --color-secondary-gray: rgba(51, 51, 51, 0.6);
 
+  --color-primary: var(--color-primary-green);
+  --color-secondary: var(--color-secondary-green);
+  --color-secondary-dark: var(--color-secondary-dark-green);
+
+  --color-text: #222;
+  --color-header-primary: var(--color-primary);
   /*
    * Layout
    * ======================================================================== */

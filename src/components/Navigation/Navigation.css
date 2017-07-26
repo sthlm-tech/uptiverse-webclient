@@ -1,3 +1,5 @@
+@import '../variables.css';
+
 .root {
   margin: 0;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -5,7 +7,7 @@
 
 .link {
   display: inline-block;
-  padding: 13px 18px;
+  padding: 14px 20px 15px 20px;
   text-decoration: none;
 }
 
@@ -20,9 +22,6 @@
 }
 
 .highlight {
-  margin-right: 8px;
-  margin-left: 8px;
-  border-radius: 3px;
   background: rgba(0, 0, 0, 0);
   color: #fff;
 }
@@ -36,7 +35,7 @@
 }
 
 .menuContainer{
-  background-color: rgba(80, 80, 80, 0.9);
+  background-color: var(--color-secondary-dark);
   width: 100%;
   position: absolute;
   top: 50px;

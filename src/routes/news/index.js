@@ -6,6 +6,12 @@ export default {
   path: '/news',
   async action (context) {
     context.store.dispatch(getNews());
-    return (<News />);
+    return {
+      menu:{
+        name:"News",
+        icon:"newspaper-o",
+      },
+      component: (<News />)
+    };
   }
 };

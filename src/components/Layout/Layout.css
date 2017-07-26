@@ -1,5 +1,7 @@
+@import '../variables.css';
+
 html {
-  color: #222;
+  color: var(--color-text);
   font-weight: 100;
   font-size: 1em; /* ~16px; */
   font-family: sans-serif;

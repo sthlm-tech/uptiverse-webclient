@@ -28,10 +28,10 @@ onLocationChange(currentLocation);
 
 function onLocationChange(location) {
   router.resolve({ path: location.pathname,  ...context })
-  .then(component => {
+  .then(route => {
     ReactDOM.render(
       <Provider store={store}>
-        { component }
+        { route.component }
       </Provider>,
       container
     );
