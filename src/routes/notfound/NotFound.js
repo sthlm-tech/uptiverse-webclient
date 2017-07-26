@@ -1,14 +1,19 @@
+import './notfound.css';
 import React, { Component } from 'react';
 import Layout from './../../components/Layout';
+import Loader from './../../components/Loader';
 
-class Login extends Component {
+class NotFound extends Component {
   render() {
     return (
-      <Layout>
-        <h3>Page can not be found.</h3>
+      <Layout className="notfound">
+        <Loader>
+          <h1>Page can not be found.</h1>
+          <p><i>Have you tried looking under the rug?</i></p>
+        </Loader>
       </Layout>
     );
   }
 }
 
-export default Login;
+export default NotFound;

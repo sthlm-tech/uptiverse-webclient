@@ -1,0 +1,17 @@
+@import '../../components/variables.css';
+
+
+.notfound h1{
+  display: table;
+  font-family: var(--font-family-header);
+  font-size: 50px;
+  text-align: center;
+  margin-top: 100px;
+  color: var(--color-header-primary);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.notfound p{
+  text-align: center;
+}
