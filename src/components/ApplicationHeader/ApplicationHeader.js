@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.css';
+import './ApplicationHeader.css';
 import Link from '../Link/Link';
 import NavigationContainer from './../../containers/NavigationContainer';
 import logoUrl from './logo.png';

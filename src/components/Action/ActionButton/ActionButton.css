@@ -1,0 +1,27 @@
+@import '../../variables.css';
+
+.actionbutton {
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-primary-light);
+  color: #333;
+  border-radius: 20px;
+  display: inline-block;
+  text-align: center;
+  margin:5px;
+}
+
+.actionbutton:hover{
+    background-color: #CCCCCC;
+}
+
+.actionbutton:active{
+    background-color: #BBBBBB;
+}
+
+.icon{
+  margin-top: 15px;
+  font-size: 14px;
+  margin-left: auto;
+  margin-right: auto;
+}

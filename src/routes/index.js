@@ -26,7 +26,6 @@ export default [
 ];
 
 function redirect(pathFrom, component){
-  console.log(component);
   return { path: pathFrom, action: (context) => redirectToPath(context, pathFrom, component) };
 }
 
@@ -51,7 +50,16 @@ async function redirectWithStatement(context, statement, component){
   let child = await context.next();
   if(statement()){
     context.history.push(component.path);
-    child = await component.action(context);
+    if(typeof component.action === "function" ){
+      child = await component.action(context);
+    }
+    else{
+      let baseChildComponent = component.children.find(function (route) { return route.path === context.url; });
+      child = await baseChildComponent.action(context);
+    }
+
+    console.log(component)
+  //
   }
   return child;
 }

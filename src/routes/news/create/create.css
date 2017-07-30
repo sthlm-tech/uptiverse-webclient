@@ -1,0 +1,59 @@
+@import '../../../components/variables.css';
+
+.createNews .header{
+  font-size: 28px;
+}
+.createNews .text{
+  font-size: 16px;
+  min-height: 100px;
+  resize: none;
+}
+.createNews .actionRow {
+  margin-left: 30px;
+  width: 100%;
+  padding: 0px 10px;
+}
+
+.createNews .cancel{
+  color: var(--color-error);
+}
+
+.createNews .publish{
+  color: var(--color-confirm);
+  float:right;
+}
+
+.createNews .btn{
+  background-color: var(--color-primary-light);
+  color:#ffffff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.createNews .btn:hover{
+  background-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.createNews input, .createNews textarea {
+  width: 100%;
+  padding: 10px;
+  border: 0px;
+  font-size: 18px;
+  font-family: var(--font-family-subheader);
+  font-family: var(--color-text);
+  border-left: 1px solid var(--color-header-primary);
+  border-right: 1px solid var(--color-header-primary);
+  margin: 30px;
+  background-color: var(--color-primary-very-light);
+}
+
+.createNews input::-webkit-input-placeholder, .createNews textarea::-webkit-input-placeholder {
+  color: var(--color-header-primary);
+  font-style: italic;
+}
+    /* height: 2.5em; */
+
+
+
+    /* color: rgba(167, 191, 176, 0.6); */

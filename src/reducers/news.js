@@ -1,12 +1,15 @@
 import {
   SET_NEWS,
   GET_NEWS_STARTED,
-  GET_NEWS_FAILED
+  GET_NEWS_FAILED,
+  SAVE_NEWS_STARTED,
+  SAVE_NEWS_FAILED
 } from './../actions/news';
 
 let initialState = {
   data: [],
   isLoading: false,
+  isSaving: false,
   error: null
 };
 
@@ -28,6 +31,17 @@ export default function news(state = initialState, action) {
         ...state,
         isLoading: false,
         error: "Failed to load news"
+      };
+    case SAVE_NEWS_STARTED:
+      return {
+        ...state,
+        isSaving: true
+      };
+    case SAVE_NEWS_FAILED:
+      return {
+        ...state,
+        isSaving: false,
+        error: "Failed to save news"
       };
     default:
       return state;
