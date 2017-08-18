@@ -1,0 +1,31 @@
+.userName {
+  font-family: 'josefin-sans';
+  font-size: 35px;
+  text-align: center;
+  margin: 0px;
+  padding-top:20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.presentationContainer {
+  margin-left:auto;
+  margin-right:auto;
+  display: block;
+}
+
+.imageBackground{
+  background-color: #FFFFFF;
+  height: 100%;
+}
+
+.imageBackground .loader{
+  margin-top: 40px;
+}
+
+.presentationContainer .circularContainer {
+  margin-left: auto;
+  margin-right: auto;
+    display: block;
+}

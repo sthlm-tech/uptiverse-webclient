@@ -1,6 +1,7 @@
 import { getAuthenticatedUser } from './../actions/user';
 import login from './login';
 import news from './news';
+import employees from './employees';
 
 export default [
   {
@@ -20,6 +21,7 @@ export default [
     children: [
       redirect("/", news),
       news,
+      employees,
       require('./notfound').default
     ],
   }

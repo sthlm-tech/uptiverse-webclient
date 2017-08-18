@@ -1,0 +1,16 @@
+.descriptionContainer {
+  text-align: center;
+  max-width:500px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--font-family-subheader);
+}
+
+.divider{
+  margin-top:40px;
+}
+
+.button{
+  display: inline-block;
+  margin: 10px;
+}

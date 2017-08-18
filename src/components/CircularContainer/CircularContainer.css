@@ -1,0 +1,29 @@
+@import '../variables.css';
+
+
+.circularContainer {
+  border: 1px solid var(--color-primary);
+  overflow: hidden;
+  display: inline-block;
+  border-radius: 10000px;
+  -webkit-border-radius: 10000px;
+  -moz-border-radius: 10000px;
+  text-align: center;
+}
+
+.circularContainer:before {    /* create a full-height inline block pseudo=element */
+    content: ' ';
+    display: inline-block;
+    vertical-align: middle;  /* vertical alignment of the inline element */
+    height: 100%;
+}
+
+.circularContainer .content {
+  border-radius: 10000px;
+  -webkit-border-radius: 10000px;
+  -moz-border-radius: 10000px;
+
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+}

@@ -1,0 +1,18 @@
+@import '../../variables.css';
+
+.employee-list{
+    list-style: none;
+    max-width: 100%;
+    padding: 0px;
+}
+
+.employee-list li{
+    margin: 10px;
+}
+
+.employee-list .link{
+  display: block;
+  color: var(--color-text);
+  margin: 0px;
+  padding: 0px;
+}
