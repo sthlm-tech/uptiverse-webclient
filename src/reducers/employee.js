@@ -1,5 +1,6 @@
 import {
   SET_EMPLOYEE,
+  EDIT_EMPLOYEE,
   GET_EMPLOYEE_STARTED,
   GET_EMPLOYEE_FAILED,
   SET_CAN_EDIT_EMPLOYEE
@@ -9,6 +10,7 @@ let initialState = {
   data: [],
   isLoading: false,
   canEdit: false,
+  editedProperties: [],
   error: null
 };
 
@@ -38,6 +40,10 @@ export default function news(state = initialState, action) {
         ...state,
         canEdit: action.canEdit
       };
+    case EDIT_EMPLOYEE:
+        return {
+          editedProperties: {[action.editedProperty]: new Date()}
+        };
     default:
       return state;
   }

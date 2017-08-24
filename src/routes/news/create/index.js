@@ -35,11 +35,8 @@ class CreateNews extends Component {
 
   save() {
     var createdNews = this.state.createdNews;
-    this.props.dispatch(saveNews({data: createdNews, callback: this.saved}));
-  }
-
-  saved(){
-    history.push("/news");
+    this.props.dispatch(saveNews({data: createdNews}))
+    .then(history.push("/news"));
   }
 
   render() {

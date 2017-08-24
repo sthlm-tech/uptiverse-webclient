@@ -42,9 +42,7 @@ export const saveNews = input => dispatch => {
     })
     .then(checkStatus)
     .then(parseJSON)
-    .then(function(json) {
-      if(input && typeof(input.callback) === 'function'){ input.callback();}
-    }).catch(function(ex) {
+    .catch(function(ex) {
       dispatch({ type: SAVE_NEWS_FAILED });
     });
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Employees from './Employees';
 import Details from './details';
+import Edit from './edit';
 import { getEmployee, setCanEditEmployee } from './../../actions/employee';
 import { getEmployees } from './../../actions/employees';
 
@@ -29,10 +30,25 @@ export default {
             context.store.dispatch(setCanEditEmployee(context.store.getState().user.data, employee));
           }
         }));
-        return {
-          component: (<Details />)
-        };
-      }
+      },
+      children:[
+        {
+          path:"/",
+          async action (context) {
+            return {
+              component: (<Details />)
+            };
+          }
+        },
+        {
+          path:"/edit",
+          async action (context) {
+            return {
+              component: (<Edit />)
+            };
+          }
+        }
+      ]
     }
   ]
 };

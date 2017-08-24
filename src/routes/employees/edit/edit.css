@@ -1,0 +1,75 @@
+@import '../../../components/variables.css';
+
+.profileHeader {
+  background: #c0ccc0;
+  height:150px;
+}
+
+.profileContainer {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: 50px;
+  position: relative;
+  top: -105px;
+}
+
+.pictureContainer {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.profileSection{
+  margin-left:auto;
+  margin-right:auto;
+  max-width: var(--max-content-width);
+}
+
+.profilePresentation {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.profileContainer input, .profileContainer textarea {
+  width: 100%;
+  padding: 10px;
+  border: 0px;
+  font-family: var(--font-family-subheader);
+  border-left: 1px solid var(--color-header-primary);
+  border-right: 1px solid var(--color-header-primary);
+  background-color: var(--color-primary-very-light);
+  resize: none;
+}
+
+.profileContainer input::-webkit-input-placeholder, .profileContainer textarea::-webkit-input-placeholder {
+  color: var(--color-header-primary);
+  font-style: italic;
+}
+
+
+
+.editEmployee .actionRow {
+  margin-top: 60px;
+  width: 100%;
+  padding: 0px 10px;
+}
+
+.editEmployee .cancel{
+  color: var(--color-error);
+}
+
+.editEmployee .save{
+  color: var(--color-confirm);
+  float:right;
+}
+
+.editEmployee .btn{
+  background-color: var(--color-primary-light);
+  color:#ffffff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.editEmployee .btn:hover{
+  background-color: var(--color-primary);
+  cursor: pointer;
+}

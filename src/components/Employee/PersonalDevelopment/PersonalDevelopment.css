@@ -11,11 +11,15 @@
   font-family: var(--font-family-subheader);
 }
 
-.text {
+.personalDevelopmentContainer .text {
   text-align: left;
   font-size: 16px;
   line-height: 28px;
   font-weight: 300;
+}
+
+.personalDevelopmentContainer textarea{
+  min-height: 250px;
 }
 
 .header{
