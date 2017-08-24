@@ -5,9 +5,9 @@
   border: 1px solid var(--color-primary);
   overflow: hidden;
   display: inline-block;
-  border-radius: 10000px;
-  -webkit-border-radius: 10000px;
-  -moz-border-radius: 10000px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
   text-align: center;
 }
 
@@ -19,9 +19,9 @@
 }
 
 .circularContainer .content {
-  border-radius: 10000px;
-  -webkit-border-radius: 10000px;
-  -moz-border-radius: 10000px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
 
   display: inline-block;
   vertical-align: middle;

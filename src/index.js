@@ -8,7 +8,6 @@ import configureStore from "./store";
 import routes from './routes';
 
 const store = configureStore();
-
 const router = new Router(routes);
 const context = {
   store: store,
@@ -31,7 +30,7 @@ function onLocationChange(location) {
   .then(route => {
     ReactDOM.render(
       <Provider store={store}>
-        { route.component }
+        { route }
       </Provider>,
       container
     );

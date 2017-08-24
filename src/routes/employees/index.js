@@ -12,13 +12,7 @@ export default {
       path: '/',
       async action (context) {
         context.store.dispatch(getEmployees());
-        return {
-          menu:{
-            name:"Employees",
-            icon:"users",
-          },
-          component: (<Employees />)
-        };
+        return (<Employees />);
       }
     },
     {
@@ -35,17 +29,13 @@ export default {
         {
           path:"/",
           async action (context) {
-            return {
-              component: (<Details />)
-            };
+            return (<Details />);
           }
         },
         {
           path:"/edit",
           async action (context) {
-            return {
-              component: (<Edit />)
-            };
+            return (<Edit />);
           }
         }
       ]

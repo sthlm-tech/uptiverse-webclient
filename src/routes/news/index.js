@@ -10,21 +10,13 @@ export default {
       path: '/',
       async action (context) {
         context.store.dispatch(getNews());
-        return {
-          menu:{
-            name:"News",
-            icon:"newspaper-o",
-          },
-          component: (<News />)
-        };
+        return (<News />);
       }
     },
     {
       path: '/create',
       async action (context) {
-        return {
-          component: (<Create />)
-        };
+        return (<Create />);
       }
     }
   ]
