@@ -21,6 +21,7 @@
   --color-secondary-green: rgba(144, 165, 152, 0.6);
     --color-secondary-light-green: rgba(111, 130, 118, 0.4);
     --color-secondary-dark-green: rgba(111, 130, 118, 0.9);
+    --color-secondary-dark-green-solid: rgba(114, 133, 121, 1.0);
 
   --color-primary-gray: rgba(51, 51, 51, 1.0);
   --color-secondary-gray: rgba(51, 51, 51, 0.6);

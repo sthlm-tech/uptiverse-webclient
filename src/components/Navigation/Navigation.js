@@ -18,7 +18,7 @@ class Navigation extends React.Component {
     if(!this.props.isAuthenticated){ return null;}
     return (
       <div className={this.props.className} role="navigation">
-        <span className="link highlight" onClick={(e)=>{ this.toggleMenu(e)}}><FontAwesome name='bars'/></span>
+        <span className={"link highlight " + (this.state.showMenu ? 'active' : '')} onClick={(e)=>{ this.toggleMenu(e)}}><FontAwesome name={(this.state.showMenu ? 'times' : 'bars')}/></span>
         {this.renderOpenMenu()}
       </div>
     );
