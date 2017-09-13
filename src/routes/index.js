@@ -2,6 +2,7 @@ import { getAuthenticatedUser } from './../actions/user';
 import login from './login';
 import news from './news';
 import employees from './employees';
+import recruits from './recruits';
 
 export default [
   {
@@ -22,6 +23,7 @@ export default [
       redirect("/", news),
       news,
       employees,
+      recruits,
       require('./notfound').default
     ],
   }
