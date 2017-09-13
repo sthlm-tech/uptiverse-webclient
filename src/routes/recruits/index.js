@@ -1,6 +1,7 @@
 import React from 'react';
 import Recruits from './Recruits';
 import Details from './details';
+import { getRecruit } from './../../actions/recruit';
 import { findRecruits, setRecruits } from './../../actions/recruits';
 export default {
   path: '/recruits',
@@ -34,6 +35,7 @@ export default {
     {
       path: '/:id',
       async action (context) {
+        context.store.dispatch(getRecruit(context.params.id));
         return (<Details />);
       }
     },

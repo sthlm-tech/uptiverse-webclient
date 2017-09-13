@@ -1,1 +1,25 @@
 @import '../../../components/variables.css';
+
+.iconContainer {
+  width: 20px;
+  color: #444444;
+  text-align: center;
+  display: inline-block;
+  margin-right: 5px;
+  margin-left: 10px;
+}
+
+.connectionContainer{
+    display: inline-block;
+}
+
+.connectionContainer .link{
+  color: #000000;
+  padding: 2px;
+}
+
+.connectionContainer .link:hover{
+  color: #000000;
+  padding: 2px;
+  text-decoration: underline;
+}
