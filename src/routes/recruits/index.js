@@ -4,7 +4,7 @@ import Details from './details';
 import { findRecruits, setRecruits } from './../../actions/recruits';
 export default {
   path: '/recruits',
-  children:[
+  children: [
     {
       path: '/',
       async action (context) {
@@ -37,7 +37,7 @@ export default {
         return (<Details />);
       }
     },
-    ,/*,
+    /*,
     {
       path: '/:id',
       async action (context) {

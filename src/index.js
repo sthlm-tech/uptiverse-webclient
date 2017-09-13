@@ -1,9 +1,9 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import Router from 'universal-router';
 import history from './core/history';
-import './index.css';
 import configureStore from "./store";
 import routes from './routes';
 

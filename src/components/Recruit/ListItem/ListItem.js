@@ -1,8 +1,7 @@
 import './ListItem.css';
-import React, { PropTypes } from 'react';
-
+import React from 'react';
 import Link from './../../Link';
-//import CountBadge from './../../Comments/CountBadge/CountBadge';
+import CountBadge from './../../../containers/CountBadgeContainer';
 import FontAwesome from 'react-fontawesome';
 
 function ListItem({ recruit }) {
@@ -22,9 +21,9 @@ function ListItem({ recruit }) {
           <FontAwesome className={phoneIconStyle(recruit)} name='phone-square'/>
           <FontAwesome className={mailIconStyle(recruit)} name='envelope'/>
         </div>
-        { /*<div className="comments">
+        <div className="comments">
           <CountBadge commentKey={getCommentKey(recruit._id)}/>
-        </div> */}
+        </div>
       </div>
     </Link>
     </div>
@@ -32,7 +31,7 @@ function ListItem({ recruit }) {
 }
 
 function getCommentKey(id){
-  return "recruits-" + id;
+  return "recruit-" + id;
 }
 
 function formatRoute(id){

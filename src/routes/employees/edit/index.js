@@ -9,8 +9,6 @@ import Description from './../../../components/Employee/Description/Edit';
 import PersonalDevelopment from './../../../components/Employee/PersonalDevelopment/Edit';
 import Presentation from './../../../components/Employee/Presentation';
 
-import ActionMenu from './../../../components/Action/ActionMenu';
-import ActionButton from './../../../components/Action/ActionButton';
 import history from './../../../core/history';
 
 import { editEmployee, saveEmployee } from './../../../actions/employee';

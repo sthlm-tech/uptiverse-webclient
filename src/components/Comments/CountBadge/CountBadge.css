@@ -1,0 +1,24 @@
+.commentBox{
+  padding: 0px;
+}
+
+.comments{
+  list-style-type: none;
+  padding: 0px;
+}
+
+.comments li{
+  padding: 10px;
+  margin-bottom:5px;
+  background-color: #eeeeee;
+}
+
+.badge{
+  background-color: rgb(140,140,140);
+  padding: 4px 9px;
+  border-radius: 16px;
+  height: 16px;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: bold;
+}
