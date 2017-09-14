@@ -1,21 +1,8 @@
-import React, { PropTypes } from 'react';
-import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import s from './Create.css';
+import './Create.css';
+import React from 'react';
 import Date from './../../Date';
-import { addComment } from '../../../actions/comments';
-import { Button, FormControl } from 'react-bootstrap';
-
 
 class Create extends React.Component {
-  static propTypes = {
-    commentKey: PropTypes.string,
-    loggedInUser: PropTypes.object,
-  };
-
-  static contextTypes = {
-      store: React.PropTypes.object
-  };
-
   constructor(props, context) {
     super(props, context);
 
@@ -31,14 +18,13 @@ class Create extends React.Component {
   }
 
   handleAddComment(event){
-    this.context.store.dispatch(addComment({
+    this.props.addComment({
       key: this.props.commentKey,
       comment: {
-        user: this.props.loggedInUser,
+        user: this.props.user,
         text: this.state.comment
-      },
-      services: this.context.store.getState().services
-    }));
+      }
+    });
 
     this.setState({
       comment: ""
@@ -48,13 +34,12 @@ class Create extends React.Component {
   render() {
     if(!this.props.commentKey){ return null; }
     return (
-      <div>
-
-      <FormControl componentClass="textarea" placeholder="Write a comment" value={this.state.comment} onChange={(e) => this.handleChange(e)}/>
-      <Button onClick={(e) => this.handleAddComment(e)} >Add comment</Button>
+      <div className="createComment">
+        <textarea className="commentField" placeholder="Write a comment" value={this.state.comment} onChange={(e) => this.handleChange(e)} cols="3" rows="3"></textarea>
+        <span className="btn" onClick={(e) => this.handleAddComment(e)} >Add comment</span>
       </div>
     );
   }
 }
 
-export default withStyles(s)(Create);
+export default Create;

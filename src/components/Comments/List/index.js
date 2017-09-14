@@ -8,13 +8,12 @@ class List extends React.Component {
     if(!this.props.comments){ return null; }
     return (
       <div className="commentBox">
-        <h5>Comments</h5>
-        <ul className="comments">
+        <ul className="commentsList">
           {this.props.comments.map((item, index) => (
             <li key={index}>
               <div>
                 <div><Date>{item.date}</Date> -
-                  <Link className="link" to={formatRoute(item.user.username)} >
+                  <Link className="link" to={"/employees/" + item.user.username}>
                     {item.user.name.firstname} {item.user.name.lastname}
                   </Link>
                 </div>
@@ -26,10 +25,6 @@ class List extends React.Component {
       </div>
     );
   }
-}
-
-function formatRoute(id){
-  return "/employee/" + id;
 }
 
 export default List;

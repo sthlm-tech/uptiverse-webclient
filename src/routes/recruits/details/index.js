@@ -8,7 +8,9 @@ import ActionMenu from './../../../components/Action/ActionMenu';
 import ActionButton from './../../../components/Action/ActionButton';
 import history from './../../../core/history';
 import CommentList from './../../../containers/CommentsListContainer';
+import CommentCreate from './../../../components/Comments/Create';
 import { formatLinkedInUrl, formatGithubUrl, formatFacebookUrl, formatEmailUrl } from "../../../helpers/connectionFormatHelper";
+import { addComment } from '../../../actions/comments';
 
 class Recruit extends Component {
 
@@ -24,9 +26,7 @@ class Recruit extends Component {
           <div>
             {this.renderName()}
             {this.renderConnections()}
-            <CommentList commentKey={getCommentKey(this.props.id)}/>
-            {/*
-            <CommentCreate commentKey={getCommentKey(this.props.id)} loggedInUser={this.state.loggedInUser}/> */}
+            {this.renderCommentsSection()}
           </div>
         </div>
         </Loader>
@@ -71,6 +71,17 @@ class Recruit extends Component {
     );
   }
 
+  renderCommentsSection(){
+    if(!this.props.recruit){ return null; }
+    return (
+      <div className="commentsSection">
+        <h4>Comments</h4>
+        <CommentCreate commentKey={getCommentKey(this.props.recruit._id)} user={this.props.user} addComment={this.props.addComment}/>
+        <CommentList commentKey={getCommentKey(this.props.recruit._id)}/>
+      </div>
+    );
+  }
+
   renderActionButtonsContianer() {
     if(!this.props.recruit){ return; };
     return (
@@ -88,12 +99,20 @@ function getCommentKey(id){
 const mapStateToProps = state => {
   return {
     recruit: state.recruit.data,
-    isLoading: state.recruit.isLoading
+    isLoading: state.recruit.isLoading,
+    user: state.user.data
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addComment: (comment) => { dispatch(addComment(comment)); }
+  };
+};
+
 const ConnectedRecruit = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Recruit)
 
 export default ConnectedRecruit;

@@ -7,6 +7,10 @@ export const SET_COMMENTS = 'SET_COMMENTS';
 export const GET_COMMENTS_STARTED = 'GET_COMMENTS_STARTED';
 export const GET_COMMENTS_FAILED = 'GET_COMMENTS_FAILED';
 
+export const ADD_COMMENTS = 'ADD_COMMENTS';
+export const ADD_COMMENTS_STARTED = 'ADD_COMMENTS_STARTED';
+export const ADD_COMMENTS_FAILED = 'ADD_COMMENTS_FAILED';
+
 
 export const setComments = (key, comments) => ({
   type: SET_COMMENTS,
@@ -27,15 +31,24 @@ export const getComments = (key) => dispatch => {
     });
 };
 
-/*
+
 export const addComment = input => dispatch => {
-  var service = input.services.comments;
-  request
-  .post(service.url + "/" + input.key)
-  .send({comment: input.comment})
-  .set('Authorization', "JWT " + service.token)
-  .set('Content-Type', "application/json;charset=UTF-8")
-  .end(function(err, res){
-    dispatch(getComments(input));
-  });
-};*/
+  dispatch({ type: ADD_COMMENTS_STARTED });
+  let body = JSON.stringify( {comment: input.comment} );
+  return fetch('http://api.uptiverse.se/api/comments/' + input.key, {
+      credentials: 'include',
+      method: "post",
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: body
+    })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(function(comment){
+      dispatch(getComments(input.key));
+    })
+    .catch(function(ex) {
+      dispatch({ type: ADD_COMMENTS_FAILED });
+    });
+};

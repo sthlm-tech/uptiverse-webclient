@@ -1,14 +1,28 @@
+@import '../../variables.css';
+
 .commentBox{
   padding: 0px;
 }
 
-.comments{
+.commentsList{
   list-style-type: none;
   padding: 0px;
+  margin-top: 30px;
 }
 
-.comments li{
+.commentsList li{
   padding: 10px;
   margin-bottom:5px;
-  background-color: #eeeeee;
+  border-top: 1px solid #CCCCCC;
+}
+
+.commentsList li .link{
+  margin: 3px;
+  padding: 0px;
+  color: var(--color-secondary-dark);
+  font-weight: bold;
+}
+
+.commentsList li .link:hover{
+  color: var(--color-text);
 }

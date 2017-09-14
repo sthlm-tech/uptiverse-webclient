@@ -1,3 +1,5 @@
+@import '../../variables.css';
+
 .commentBox{
   padding: 0px;
 }
@@ -11,4 +13,27 @@
   padding: 10px;
   margin-bottom:5px;
   background-color: #eeeeee;
+}
+
+.commentField{
+  width: -webkit-fill-available;
+  height: 50px;
+  resize: none;
+  margin-bottom: 8px;
+  border: 1px solid #CCCCCC;
+  font-size: 14px;
+  padding: 5px;
+  font-family: var(--font-family-base);
+}
+
+.createComment .btn{
+  background-color: var(--color-primary-light);
+  color:#ffffff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.createComment .btn:hover{
+  background-color: var(--color-primary);
+  cursor: pointer;
 }
