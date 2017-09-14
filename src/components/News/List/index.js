@@ -18,13 +18,9 @@ function renderNewsItems(news){
     <div className="newsItem" key={index}>
       <h2 className="newsItemHeading">{item.heading}</h2>
       <p className="newsItemText" dangerouslySetInnerHTML={{__html: item.text}}></p>
-      <p className="newsItemPublished"><Date>{item.published}</Date> - <Link to={formatRoute(item.publisherId)} className="link">{item.publisher}</Link></p>
+      <p className="newsItemPublished"><Date>{item.published}</Date> - <Link to={"/employees/" +item.publisherId} className="link">{item.publisher}</Link></p>
     </div>
   ));
-}
-
-function formatRoute(id){
-  return "/employee/" + id;
 }
 
 export default List;

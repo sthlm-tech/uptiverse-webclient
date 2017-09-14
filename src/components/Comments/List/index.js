@@ -17,7 +17,7 @@ class List extends React.Component {
                     {item.user.name.firstname} {item.user.name.lastname}
                   </Link>
                 </div>
-                <div>{item.text}</div>
+                <div className="comment">{item.text}</div>
               </div>
             </li>
           ))}

@@ -9,7 +9,7 @@ export default {
     {
       path: '/',
       async action (context) {
-        return (<Recruits />);
+        return (<Recruits query=""/>);
       }
     },
     {
@@ -18,7 +18,7 @@ export default {
         {
           path: '/',
           async action (context) {
-            context.store.dispatch(setRecruits({}));
+            context.store.dispatch(findRecruits({query:""}));
             return (<Recruits query=""/>);
           }
         },

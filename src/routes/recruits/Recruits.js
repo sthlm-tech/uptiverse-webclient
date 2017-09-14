@@ -29,7 +29,6 @@ class Recruits extends Component {
     if(recruits.length <= 0) {return;}
     return (
       <div className="searchResultContainer">
-        <h4>Search result </h4>
         <ul className="searchResultList">
           {recruits.map((item, index) => (
             <li key={index}>

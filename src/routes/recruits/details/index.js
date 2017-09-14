@@ -76,8 +76,8 @@ class Recruit extends Component {
     return (
       <div className="commentsSection">
         <h4>Comments</h4>
-        <CommentCreate commentKey={getCommentKey(this.props.recruit._id)} user={this.props.user} addComment={this.props.addComment}/>
         <CommentList commentKey={getCommentKey(this.props.recruit._id)}/>
+        <CommentCreate commentKey={getCommentKey(this.props.recruit._id)} user={this.props.user} addComment={this.props.addComment}/>
       </div>
     );
   }

@@ -11,18 +11,21 @@
 }
 
 .commentsList li{
-  padding: 10px;
+  padding: 15px 10px;
   margin-bottom:5px;
   border-top: 1px solid #CCCCCC;
+  font-family: var(--font-family-base);
+  font-weight: 200;
 }
 
 .commentsList li .link{
   margin: 3px;
   padding: 0px;
-  color: var(--color-secondary-dark);
-  font-weight: bold;
+  color: #333333;
+  font-weight: 400;
+  font-family: var(--font-family-base);
 }
 
-.commentsList li .link:hover{
-  color: var(--color-text);
+.commentsList .comment{
+  font-size: 14px;
 }
