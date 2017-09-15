@@ -7,27 +7,44 @@ import Loader from './../../../components/Loader';
 import ActionMenu from './../../../components/Action/ActionMenu';
 import ActionButton from './../../../components/Action/ActionButton';
 import history from './../../../core/history';
-import CommentList from './../../../containers/CommentsListContainer';
+import CommentList from './../../../components/Comments/List';
 import CommentCreate from './../../../components/Comments/Create';
+import CountBadge from './../../../components/Comments/CountBadge';
 import { formatLinkedInUrl, formatGithubUrl, formatFacebookUrl, formatEmailUrl } from "../../../helpers/connectionFormatHelper";
 import { addComment } from '../../../actions/comments';
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { getCommentKey } from './../../../helpers/referenceIdHelper';
 
 class Recruit extends Component {
 
   handleEditRecruitClicked(){
-    history.push("/recruits/"+ this.props.recruit._id +"/edit");
+    history.push("/recruits/"+ this.props.id +"/edit");
   }
 
   render() {
     return (
       <Layout>
         <Loader isLoading={this.props.isLoading}>
-        <div>
-          <div>
-            {this.renderName()}
-            {this.renderConnections()}
-            {this.renderCommentsSection()}
-          </div>
+        <div className="recruitContainer">
+          {this.renderName()}
+          <Tabs>
+            <TabList>
+              <Tab><h3 className="tabHeader">Contact</h3></Tab>
+              <Tab>{this.renderCommentsHeader()}</Tab>
+              <Tab><h3 className="tabHeader">In process</h3></Tab>
+            </TabList>
+            <TabPanel>
+              {this.renderConnections()}
+            </TabPanel>
+            <TabPanel>
+              <Loader isLoading={this.props.isCommentsLoading}>
+                {this.renderCommentsSection()}
+              </Loader>
+            </TabPanel>
+            <TabPanel>
+
+            </TabPanel>
+          </Tabs>
         </div>
         </Loader>
 
@@ -41,7 +58,7 @@ class Recruit extends Component {
 
   renderName(){
     if(!this.props.recruit){ return null; }
-    return (<h3>{ this.props.recruit.firstname } { this.props.recruit.lastname }</h3>);
+    return (<h2>{ this.props.recruit.firstname } { this.props.recruit.lastname }</h2>);
   }
 
   renderConnections(){
@@ -56,7 +73,6 @@ class Recruit extends Component {
 
     return (
       <div>
-        <h5>Contact</h5>
         {connectionList.map((item, index) => (
           <div key={index}>
             <div className="iconContainer"><FontAwesome name={item.icon}/></div>
@@ -71,14 +87,20 @@ class Recruit extends Component {
     );
   }
 
+  renderCommentsHeader(){
+    if(!this.props.recruit){ return null; }
+    return (
+      <h3 className="tabHeader">Comments <span className="commentBadge"><CountBadge comments={this.props.comments}/></span></h3>
+    );
+  }
+
   renderCommentsSection(){
     if(!this.props.recruit){ return null; }
     return (
-      <div className="commentsSection">
-        <h4>Comments</h4>
-        <CommentList commentKey={getCommentKey(this.props.recruit._id)}/>
-        <CommentCreate commentKey={getCommentKey(this.props.recruit._id)} user={this.props.user} addComment={this.props.addComment}/>
-      </div>
+        <div className="commentsSection">
+          <CommentList comments={this.props.comments}/>
+          <CommentCreate commentKey={getCommentKey(this.props.id)} user={this.props.user} addComment={this.props.addComment}/>
+        </div>
     );
   }
 
@@ -92,15 +114,14 @@ class Recruit extends Component {
   }
 }
 
-function getCommentKey(id){
-  return "recruit-" + id;
-}
-
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const data = state.comments[getCommentKey(ownProps.id)] || {};
   return {
     recruit: state.recruit.data,
     isLoading: state.recruit.isLoading,
-    user: state.user.data
+    user: state.user.data,
+    comments: data.comments,
+    isCommentsLoading: data.isLoading
   }
 }
 

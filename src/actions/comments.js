@@ -3,6 +3,8 @@ import {
   parseJSON
 } from "./../helpers/http";
 
+import { store } from "./../store";
+
 export const SET_COMMENTS = 'SET_COMMENTS';
 export const GET_COMMENTS_STARTED = 'GET_COMMENTS_STARTED';
 export const GET_COMMENTS_FAILED = 'GET_COMMENTS_FAILED';
@@ -19,6 +21,7 @@ export const setComments = (key, comments) => ({
 });
 
 export const getComments = (key) => dispatch => {
+  if(store.getState().comments[key] && store.getState().comments[key].isLoading){ return; }
   dispatch({ type: GET_COMMENTS_STARTED, key: key });
   return fetch('http://api.uptiverse.se/api/comments/' + key, { credentials: 'include' })
     .then(checkStatus)
@@ -29,6 +32,7 @@ export const getComments = (key) => dispatch => {
       console.log(ex)
       dispatch({ type: GET_COMMENTS_FAILED, key: key });
     });
+
 };
 
 

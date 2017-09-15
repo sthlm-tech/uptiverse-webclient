@@ -3,6 +3,9 @@ import Recruits from './Recruits';
 import Details from './details';
 import { getRecruit } from './../../actions/recruit';
 import { findRecruits, setRecruits } from './../../actions/recruits';
+import { getComments } from './../../actions/comments';
+import { getCommentKey } from './../../helpers/referenceIdHelper';
+
 export default {
   path: '/recruits',
   children: [
@@ -36,7 +39,8 @@ export default {
       path: '/:id',
       async action (context) {
         context.store.dispatch(getRecruit(context.params.id));
-        return (<Details />);
+        context.store.dispatch(getComments(getCommentKey(context.params.id)));
+        return (<Details id={context.params.id}/>);
       }
     },
     /*,

@@ -16,8 +16,9 @@ export const setRecruits = input => dispatch => {
 };
 
 export const findRecruits = input => dispatch => {
+  const url = 'http://api.uptiverse.se/api/recruits/search/' + input.query;
   dispatch({ type: FIND_RECRUITS_STARTED });
-  return fetch('http://api.uptiverse.se/api/recruits/search/' + input.query, { credentials: 'include' })
+  return fetch(url, { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON)
     .then(function(json) {

@@ -27,3 +27,49 @@
 .commentsSection{
   margin-top: 20px;
 }
+
+.recruitContainer h3{
+  font-family: var(--font-family-header);
+  font-size: 24px;
+}
+
+.recruitContainer h2{
+  font-family: var(--font-family-header);
+  font-size: 36px;
+  text-align: center;
+}
+
+.commentBadge{
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-top: -1px;
+}
+
+.react-tabs ul{
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.react-tabs .react-tabs__tab{
+  display: inline-block;
+  width:33.333%;
+  background-color: #CCCCCC;
+}
+
+.tabHeader{
+  padding: 5px 10px;
+}
+
+.react-tabs .react-tabs__tab h3{
+  margin: 0px;
+}
+
+.react-tabs  .react-tabs__tab--selected{
+  background-color: var(--color-primary-light);
+}
+
+.react-tabs__tab-panel{
+  margin-top:40px;
+}
