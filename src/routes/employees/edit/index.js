@@ -24,6 +24,15 @@ class EmployeeEdit extends Component {
     }
   }
 
+  setConnectionProperty(event){
+    var property = event.target.dataset["property"];
+    if(property){
+      var modEmployee = this.props.employee;
+      modEmployee.connections[property] = {id: event.target.value};
+      this.props.editEmployee({employee: modEmployee, property: property});
+    }
+  }
+
   save() {
     var modEmployee = this.props.employee;
     this.props.saveEmployee({data: modEmployee})
@@ -45,7 +54,7 @@ class EmployeeEdit extends Component {
                 <div className="profileSection">
                   <Description employee={employee} onChange={(e)=>{ this.setProperty(e)}} />
                   <PersonalDevelopment employee={employee} onChange={(e)=>{ this.setProperty(e)}} />
-                  <ContactInfo employee={employee} onChange={(e)=>{ this.setProperty(e)}} />
+                  <ContactInfo employee={employee} onChange={(e)=>{ this.setConnectionProperty(e)}} />
                   <div className="actionRow">
                     <Link className="cancel" to={employeeLink(employee)}>Cancel</Link>
                     <span className="save btn" onClick={(e)=>{ this.save(e)}}>Save</span>

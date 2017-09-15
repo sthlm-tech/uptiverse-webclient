@@ -8,6 +8,7 @@ function Edit({ employee, onChange}) {
       <div>
         <h4 className="header"> Personal development</h4>
         <textarea className="text" placeholder="What would make you even better than you already are?" value={employee.developmentGoals} data-property="developmentGoals" onChange={ (e)=>{ onChange(e) }}></textarea>
+        <textarea className="text" placeholder="Link to Developmentplan" value={employee.developmentGoalsLink} data-property="developmentGoalsLink" onChange={ (e)=>{ onChange(e) }}></textarea>
       </div>
     </div>
   );

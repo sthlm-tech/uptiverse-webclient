@@ -43,7 +43,8 @@
   display: inline-block;
   vertical-align: middle;
   margin-left: 5px;
-  margin-top: -1px;
+  margin-top: 4px;
+  float:right;
 }
 
 .react-tabs ul{

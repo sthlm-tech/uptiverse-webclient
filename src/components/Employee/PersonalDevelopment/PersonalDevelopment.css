@@ -34,3 +34,15 @@
   display: inline-block;
   margin: 10px;
 }
+
+.personalDevelopmentContainer .btn{
+  background-color: var(--color-primary-light);
+  color:#ffffff;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.personalDevelopmentContainer .btn:hover{
+  background-color: var(--color-primary);
+  cursor: pointer;
+}
