@@ -9,7 +9,8 @@ let initailState = {
   data: [],
   isLoading: false,
   error: null,
-  isAuthenticated: false
+  isAuthenticated: false,
+  lastCheck: null,
 };
 
 const user = (state = initailState, action) => {
@@ -19,7 +20,8 @@ const user = (state = initailState, action) => {
       return {
         ...state,
         data: action.data,
-        isLoading: false
+        isLoading: false,
+        lastCheck: Date.now()
       }
     case SET_USER_IS_AUTHENTICATED:
       return {

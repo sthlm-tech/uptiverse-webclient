@@ -1,8 +1,9 @@
 import React from 'react';
 import Recruits from './Recruits';
 import Details from './details';
+import Edit from './edit';
 import { getRecruit } from './../../actions/recruit';
-import { findRecruits, setRecruits } from './../../actions/recruits';
+import { findRecruits } from './../../actions/recruits';
 import { getComments } from './../../actions/comments';
 import { getCommentKey } from './../../helpers/referenceIdHelper';
 
@@ -39,9 +40,22 @@ export default {
       path: '/:id',
       async action (context) {
         context.store.dispatch(getRecruit(context.params.id));
-        context.store.dispatch(getComments(getCommentKey(context.params.id)));
-        return (<Details id={context.params.id}/>);
-      }
+      },
+      children:[
+        {
+          path: '/',
+          async action (context) {
+            context.store.dispatch(getComments(getCommentKey(context.params.id)));
+            return (<Details id={context.params.id}/>);
+          }
+        },
+        {
+          path: '/edit',
+          async action (context) {
+            return (<Edit id={context.params.id}/>);
+          }
+        }
+      ]
     },
     /*,
     {

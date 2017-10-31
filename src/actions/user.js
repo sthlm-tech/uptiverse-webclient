@@ -22,7 +22,10 @@ export const setUserIsAuthenticated = (isAuthenticated) => {
   }
 }
 
-export const getAuthenticatedUser = input => dispatch => {
+export const getAuthenticatedUser = input => (dispatch, getState) => {
+  var lastCheck = getState().user.lastCheck;
+  var addedTime = 1 * 1000 * 60 * 10; //verify token every 10 minues 
+  if(lastCheck && (lastCheck + addedTime) > Date.now()){  return ; }
   dispatch({ type: GET_AUTHENTICATED_USER_STARTED });
   return fetch('http://authentication.uptiverse.se/authentication/validation/user', {credentials: 'include'})
     .then(checkStatus)

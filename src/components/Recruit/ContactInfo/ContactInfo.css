@@ -1,0 +1,15 @@
+.contactInfoContainer .connectionContainer{
+  display: block;
+  margin: 5px;
+  padding:3px;
+}
+
+.connection{
+  width: 20px;
+}
+
+.contactInfoContainer .link{
+  color: #000;
+  padding: 0px;
+  margin-left: 20px;
+}

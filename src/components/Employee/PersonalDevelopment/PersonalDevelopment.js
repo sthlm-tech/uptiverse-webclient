@@ -1,7 +1,5 @@
 import './PersonalDevelopment.css';
 import React from 'react';
-import Link from './../../../components/Link';
-
 
 class PersonalDevelopment extends React.Component {
   render() {

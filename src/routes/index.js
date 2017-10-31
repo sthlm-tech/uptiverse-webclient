@@ -61,9 +61,6 @@ async function redirectWithStatement(context, statement, component){
       let baseChildComponent = component.children.find(function (route) { return route.path === context.url; });
       child = await baseChildComponent.action(context);
     }
-
-    console.log(component)
-  //
   }
   return child;
 }

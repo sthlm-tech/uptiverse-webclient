@@ -10,6 +10,7 @@ import history from './../../../core/history';
 import CommentList from './../../../components/Comments/List';
 import CommentCreate from './../../../components/Comments/Create';
 import CountBadge from './../../../components/Comments/CountBadge';
+import ContactInfo from './../../../components/Recruit/ContactInfo';
 import { formatLinkedInUrl, formatGithubUrl, formatFacebookUrl, formatEmailUrl } from "../../../helpers/connectionFormatHelper";
 import { addComment } from '../../../actions/comments';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
@@ -31,10 +32,10 @@ class Recruit extends Component {
             <TabList>
               <Tab><h3 className="tabHeader">Contact</h3></Tab>
               <Tab>{this.renderCommentsHeader()}</Tab>
-              <Tab><h3 className="tabHeader">In process</h3></Tab>
+              <Tab><h3 className="tabHeader">History</h3></Tab>
             </TabList>
             <TabPanel>
-              {this.renderConnections()}
+              <ContactInfo recruit={this.props.recruit} />
             </TabPanel>
             <TabPanel>
               <Loader isLoading={this.props.isCommentsLoading}>
@@ -42,7 +43,7 @@ class Recruit extends Component {
               </Loader>
             </TabPanel>
             <TabPanel>
-
+              Not implemented yet
             </TabPanel>
           </Tabs>
         </div>
