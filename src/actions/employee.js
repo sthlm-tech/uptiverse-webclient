@@ -46,7 +46,7 @@ export const getEmployee = input => dispatch => {
 export const saveEmployee = input => dispatch => {
   dispatch({ type: SAVE_EMPLOYEE_STARTED });
   let body = JSON.stringify( input.data );
-  return fetch('http://localhost:5000/employees/save', {
+  return fetch('http://api.uptiverse.se/api/employees/save', {
       credentials: 'include',
       method: "post",
       headers: new Headers({
