@@ -3,6 +3,7 @@ import login from './login';
 import news from './news';
 import employees from './employees';
 import recruits from './recruits';
+import pages from './pages';
 
 export default [
   {
@@ -21,6 +22,7 @@ export default [
     },
     children: [
       redirect("/", news),
+      pages,
       news,
       employees,
       recruits,

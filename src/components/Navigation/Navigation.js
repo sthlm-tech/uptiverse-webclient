@@ -13,8 +13,7 @@ class Navigation extends React.Component {
       <div className={this.props.className} role="navigation">
         <span
           className={"link highlight " + (this.props.isOpen ? 'active' : '')}
-          onClick={(e)=>{ this.handleClick(e)}}
-        >
+          onClick={(e)=>{ this.handleClick(e)}}>
           <FontAwesome name={(this.props.isOpen? 'times' : 'bars')}/>
         </span>
         {this.renderOpenMenu()}
@@ -30,14 +29,11 @@ class Navigation extends React.Component {
           {
             features.map((item, index) => {
               if(!item.shouldShow){ return null; }
-              let iconClass = item.implemented ? "menuIcon": "menuIcon comming";
               return (
-                <Link className="menuBlockLink" to={item.link} key={index}>
-                  <div className="menuBlock">
-                    <FontAwesome className={iconClass} name={item.icon}/>
-                    <span className="menuText">{item.name}</span>
-                  </div>
-                </Link>
+                <div className="menuContentLimiter" key={index}>
+                  <MenuItem item={item}/>
+                  {item.submenu && <SubMenu items={item.submenu}/> }
+                </div>
               )
             })
           }
@@ -56,6 +52,38 @@ class Navigation extends React.Component {
   handleClick(){
     this.props.dispatch(toggleMenu(this.props.menuName));
   }
+}
+
+const MenuItem = ({item}) => {
+  let iconClass = item.implemented ? "menuIcon": "menuIcon comming";
+  return(
+    <Link className="menuBlockLink" to={item.link} >
+      <div className="menuBlock">
+        <FontAwesome className={iconClass} name={item.icon}/>
+        <span className="menuText">{item.name}</span>
+      </div>
+    </Link>
+  );
+}
+
+const SubMenu = ({items}) => {
+  return (
+    <div className="subMenu">
+      <FontAwesome className="subMenuIndicator" name="chevron-down"/>
+      <ul className="subMenuList">
+      {
+        items.map((item, index) => {
+          if(!item.shouldShow){ return null; }
+          return (
+            <li key={index}>
+              <MenuItem item={item}/>
+            </li>
+          )
+        })
+      }
+      </ul>
+    </div>
+  );
 }
 
 export default Navigation;

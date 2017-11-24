@@ -4,7 +4,23 @@ let features = [
     implemented: false,
     shouldShow: true,
     icon: 'cubes',
-    name: 'Pages'
+    name: 'Pages',
+    submenu: [
+      {
+        link: "/pages/welcome",
+        implemented: false,
+        shouldShow: true,
+        icon: 'heart-o',
+        name: 'Welcome to Uptive'
+      },
+      {
+        link: "/pages/important",
+        implemented: true,
+        shouldShow: true,
+        icon: 'exclamation-circle',
+        name: 'Important information'
+      }
+    ]
   },
   {
     link: "/news",

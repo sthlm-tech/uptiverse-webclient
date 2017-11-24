@@ -51,27 +51,6 @@
   justify-content: center;
 }
 
-.menuBlock{
-  width:100px;
-  padding: 10px;
-  margin: 10px;
-  text-align: center;
-  border-bottom: 2px solid transparent;
-  transition: border-color .8s ease;
-}
-
-.menuBlock:hover{
-  border-bottom-color: #fff;
-}
-
-.menuBlockLink{
-  display: inline-block;
-}
-
-.menuBlockLink:hover{
-  text-decoration: none;
-}
-
 .counterContainer{
   background-color: rgba(255,100,100,0.8);
   width: 16px;

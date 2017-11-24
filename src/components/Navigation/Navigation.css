@@ -55,6 +55,10 @@
   justify-content: center;
 }
 
+.menuContentLimiter{
+  width:140px;
+}
+
 .menuBlock{
   width:100px;
   padding: 10px;
@@ -90,4 +94,46 @@
 .menuText{
   font-size: 20px !important;
   display: block;
+}
+
+.subMenu{
+  width:250px;
+  margin: 0px 0px 40px 25px;
+  padding: 0px;
+}
+
+.subMenu .subMenuList{
+  list-style: none;
+  margin: 20px 0px 0px -35px;
+  padding: 0px;
+}
+
+.subMenuIndicator{
+  margin-left: 36px;
+}
+
+.subMenu .menuBlock{
+  width: auto;
+  text-align: left;
+  border-left: 2px solid transparent;
+  border-bottom: 0px;
+  transition: border-color .8s ease;
+  padding: 5px 0px 5px 10px;
+  margin: 0px;
+}
+
+.subMenu .menuBlock:hover{
+  border-left-color: #fff;
+}
+
+.subMenu .menuIcon{
+  font-size: 15px !important;
+  display: inline-block;
+  margin-right: 10px;
+  margin-top: 0px;
+}
+
+.subMenu .menuText{
+  font-size: 14px !important;
+  display: inline-block;
 }
