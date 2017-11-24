@@ -34,7 +34,9 @@ class Create extends React.Component {
     if(!this.props.commentKey){ return null; }
     return (
       <div className="createComment">
-        <textarea className="commentField" placeholder="Spread the word, write it down..." value={this.state.comment} onChange={(e) => this.handleChange(e)} cols="3" rows="3"></textarea>
+        <div className="commentField">
+          <textarea className="commentFieldTextArea" placeholder="Spread the word, write it down..." value={this.state.comment} onChange={(e) => this.handleChange(e)} cols="3" rows="3"></textarea>
+        </div>
         <span className="btn" onClick={(e) => this.handleAddComment(e)} >Add comment</span>
       </div>
     );

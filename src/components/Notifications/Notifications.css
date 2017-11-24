@@ -1,23 +1,19 @@
 @import '../variables.css';
 
-.root {
-  margin: 0;
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
-
-.link {
+.notificationLink {
   display: inline-block;
   padding: 14px 20px;
+  height: 22px;
   text-decoration: none;
 }
 
-.link,
-.link:active,
-.link:visited {
+.notificationLink,
+.notificationLink:active,
+.notificationLink:visited {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.link:hover {
+.notificationLink:hover {
   color: rgba(255, 255, 255, 1);
 }
 
@@ -70,24 +66,33 @@
 
 .menuBlockLink{
   display: inline-block;
-  color: rgba(255, 255, 255, 255);
 }
 
 .menuBlockLink:hover{
   text-decoration: none;
 }
 
-.comming{
-  color: rgba(144, 165, 152, 1);
+.counterContainer{
+  background-color: rgba(255,100,100,0.8);
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  position: relative;
+  top: -23px;
+  left: 11px;
+  padding: 0px;
+  margin: 0px;
 }
 
-.menuIcon{
-  font-size: 35px !important;
-  display: block;
-  margin-top: 10px;
+.counter{
+  font-size: 12px;
+  font-weight: 400;
+  position: relative;
+  top: -3px;
+  left: 5px;
 }
 
-.menuText{
-  font-size: 20px !important;
-  display: block;
+.notificationIcon{
+  height: 22px;
+  overflow: hidden;
 }

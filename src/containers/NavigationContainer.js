@@ -1,23 +1,18 @@
-import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Navigation from './../components/Navigation';
 
-class NavigationContainer extends Component {
-  render() {
-    return (
-      <Navigation className={this.props.className} isAuthenticated={this.props.isAuthenticated}/>
-    );
-  }
-}
+const menuName = "Navigation";
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.user.isAuthenticated
+    isAuthenticated: state.user.isAuthenticated,
+    isOpen: (state.menus.isOpen && state.menus.current === menuName),
+    menuName: menuName
   }
 }
 
 const ConnectedNavigationContainer = connect(
   mapStateToProps
-)(NavigationContainer)
+)(Navigation)
 
 export default ConnectedNavigationContainer;

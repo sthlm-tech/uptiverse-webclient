@@ -2,53 +2,45 @@ import './Navigation.css';
 import 'font-awesome/css/font-awesome.css';
 import React from 'react';
 import Link from '../Link';
-//import { logout } from '../../actions/logout';
-//import { Popover, OverlayTrigger } from 'react-bootstrap';
 import FontAwesome from 'react-fontawesome';
+import {features} from './features';
+import { toggleMenu } from '../../actions/menu';
 
 class Navigation extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      showMenu: false,
-    };
-  }
-
   render() {
     if(!this.props.isAuthenticated){ return null;}
     return (
       <div className={this.props.className} role="navigation">
-        <span className={"link highlight " + (this.state.showMenu ? 'active' : '')} onClick={(e)=>{ this.toggleMenu(e)}}><FontAwesome name={(this.state.showMenu ? 'times' : 'bars')}/></span>
+        <span
+          className={"link highlight " + (this.props.isOpen ? 'active' : '')}
+          onClick={(e)=>{ this.handleClick(e)}}
+        >
+          <FontAwesome name={(this.props.isOpen? 'times' : 'bars')}/>
+        </span>
         {this.renderOpenMenu()}
       </div>
     );
   }
 
   renderOpenMenu(){
-    if(!this.state.showMenu){ return null;}
+    if(!this.props.isOpen){ return null;}
     return (
       <div className="menuContainer">
         <div className="menuContent">
-          <Link className="menuBlockLink" to="/news">
-            <div className="menuBlock">
-              <FontAwesome className="menuIcon" name='newspaper-o'/>
-              <span className="menuText">News</span>
-            </div>
-          </Link>
-
-          <Link className="menuBlockLink" to="/employees">
-            <div className="menuBlock">
-              <FontAwesome className="menuIcon" name='users'/>
-              <span className="menuText">Employees</span>
-            </div>
-          </Link>
-
-          <Link className="menuBlockLink" to="/recruits">
-            <div className="menuBlock">
-              <FontAwesome className="menuIcon" name='user-plus'/>
-              <span className="menuText">Recruits</span>
-            </div>
-          </Link>
+          {
+            features.map((item, index) => {
+              if(!item.shouldShow){ return null; }
+              let iconClass = item.implemented ? "menuIcon": "menuIcon comming";
+              return (
+                <Link className="menuBlockLink" to={item.link} key={index}>
+                  <div className="menuBlock">
+                    <FontAwesome className={iconClass} name={item.icon}/>
+                    <span className="menuText">{item.name}</span>
+                  </div>
+                </Link>
+              )
+            })
+          }
 
           <a className="menuBlockLink" href="http://authentication.uptiverse.se/authentication/logout?url=http://beta.uptiverse.se">
             <div className="menuBlock">
@@ -60,10 +52,9 @@ class Navigation extends React.Component {
       </div>
     );
   }
-  //<a href="http://localhost:5000/authentication/logout?url=http://localhost:3000/">Logout</a>
 
-  toggleMenu(){
-    this.setState({showMenu: !this.state.showMenu});
+  handleClick(){
+    this.props.dispatch(toggleMenu(this.props.menuName));
   }
 }
 
