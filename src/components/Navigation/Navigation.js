@@ -3,7 +3,6 @@ import 'font-awesome/css/font-awesome.css';
 import React from 'react';
 import Link from '../Link';
 import FontAwesome from 'react-fontawesome';
-import {features} from './features';
 import { toggleMenu, closeMenus } from '../../actions/menu';
 
 class Navigation extends React.Component {
@@ -27,7 +26,7 @@ class Navigation extends React.Component {
       <div className="menuContainer">
         <div className="menuContent">
           {
-            features.map((item, index) => {
+            this.props.content.map((item, index) => {
               if(!item.shouldShow){ return null; }
               return (
                 <div className="menuContentLimiter" key={index}>

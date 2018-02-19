@@ -7,7 +7,8 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.user.isAuthenticated,
     isOpen: (state.menus.isOpen && state.menus.current === menuName),
-    menuName: menuName
+    menuName: menuName,
+    content: state.menus.content
   }
 }
 

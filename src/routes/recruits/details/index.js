@@ -30,17 +30,18 @@ class Recruit extends Component {
           {this.renderName()}
           <Tabs>
             <TabList>
-              <Tab><h3 className="tabHeader">Contact</h3></Tab>
+
               <Tab>{this.renderCommentsHeader()}</Tab>
+              <Tab><h3 className="tabHeader">Contact</h3></Tab>
               <Tab><h3 className="tabHeader">History</h3></Tab>
             </TabList>
-            <TabPanel>
-              <ContactInfo recruit={this.props.recruit} />
-            </TabPanel>
             <TabPanel>
               <Loader isLoading={this.props.isCommentsLoading}>
                 {this.renderCommentsSection()}
               </Loader>
+            </TabPanel>
+            <TabPanel>
+              <ContactInfo recruit={this.props.recruit} />
             </TabPanel>
             <TabPanel>
               Not implemented yet

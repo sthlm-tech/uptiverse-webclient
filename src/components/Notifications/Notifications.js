@@ -8,7 +8,6 @@ class Notifications extends React.Component {
   render() {
     var newNotifications = this.props.notifications || [];
     var hasNewNotifications =  newNotifications.length > 0;
-    console.log(this.props)
     if(!this.props.isAuthenticated || !this.props.isToggled){ return null;}
     return (
       <div className={this.props.className}>

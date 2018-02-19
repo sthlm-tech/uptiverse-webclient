@@ -4,7 +4,8 @@ import news from './news';
 import employees from './employees';
 import recruits from './recruits';
 import pages from './pages';
-
+import { setMenuContent } from './../actions/menu';
+import { features } from './../constants/features';
 export default [
   {
     path: '/',
@@ -18,7 +19,10 @@ export default [
   {
     path: '/',
     async action(context) {
-      return requireLogin(context, login);
+      return requireLogin(context, login, function(context){
+        context.store.dispatch(setMenuContent(features));
+      });
+
     },
     children: [
       redirect("/", news),
@@ -37,22 +41,23 @@ function redirect(pathFrom, component){
 
 async function redirectToPath(context, pathFrom, component){
   const navigatedToPath = function(){ return context.url === pathFrom };
-  return redirectWithStatement(context, navigatedToPath, component);
+  return redirectIfTrue(context, navigatedToPath, component);
 }
 
 async function redirectIfLoggedIn(context, pathFrom, component){
   const navigatedToPath = function(){ return context.url === pathFrom && context.store.getState().user.isAuthenticated  };
   await context.store.dispatch(getAuthenticatedUser());
-  return redirectWithStatement(context, navigatedToPath, component);
+  return redirectIfTrue(context, navigatedToPath, component);
 }
 
-async function requireLogin(context, component){
+async function requireLogin(context, component, callback){
   const isNotAuthenticated = function(){ return !context.store.getState().user.isAuthenticated };
   await context.store.dispatch(getAuthenticatedUser());
-  return redirectWithStatement(context, isNotAuthenticated, component);
+  if(callback && typeof(callback) === 'function'){ callback(context); }
+  return redirectIfTrue(context, isNotAuthenticated, component);
 }
 
-async function redirectWithStatement(context, statement, component){
+async function redirectIfTrue(context, statement, component){
   let child = await context.next();
   if(statement()){
     context.history.push(component.path);

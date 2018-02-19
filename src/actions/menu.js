@@ -1,5 +1,14 @@
 export const SET_MENU_OPEN = 'SET_MENU_OPEN';
 export const SET_MENU_CLOSE = 'SET_MENU_CLOSE';
+export const SET_MENU_CONTENT = 'SET_MENU_CONTENT';
+
+export const setMenuContent = (content) => {
+  console.log(content)
+  return {
+    type: SET_MENU_CONTENT,
+    content: content
+  }
+}
 
 export const openMenu = menu => dispatch => {
   dispatch(closeMenus());
