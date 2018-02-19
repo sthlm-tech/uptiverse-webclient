@@ -2,7 +2,7 @@ let features = [
   {
     link: "/pages",
     implemented: true,
-    shouldShow: true,
+    shouldShow: false,
     icon: 'cubes',
     name: 'Pages',
     submenu: [
@@ -49,6 +49,13 @@ let features = [
     shouldShow: false,
     icon: 'clock-o',
     name: 'Time report'
+  },
+  {
+    link: "/economy",
+    implemented: false,
+    shouldShow: false,
+    icon: 'line-chart',
+    name: 'Economy'
   },
   {
     link: "/recruits",

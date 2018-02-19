@@ -1,5 +1,25 @@
 @import '../../components/variables.css';
 
 .page {
-  text-align: center;
+
+}
+
+.pageList{
+  list-style: none;
+  color: var(--color-primary-light);
+}
+.pageList .pageListBlock{
+  color: var(--color-primary);
+}
+
+.pageList li{
+  padding:5px;
+}
+
+.pageListIcon{
+  margin-right: 10px;
+}
+
+.pageListNavigationIcon{
+  margin-left: 10px;
 }

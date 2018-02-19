@@ -12,7 +12,7 @@ class Uptiverse extends Component {
         <PageHeader>Welcome to Uptive!</PageHeader>
         <Loader isLoading={false}>
           <div className="page">
-            <p>Welcome text goes here.</p>
+            <p>We´re glad to have you onboard! More text comes here in a later stage</p>
           </div>
         </Loader>
       </div>

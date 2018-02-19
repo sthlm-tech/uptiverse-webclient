@@ -31,7 +31,10 @@ class Navigation extends React.Component {
               return (
                 <div className="menuContentLimiter" key={index}>
                   <MenuItem item={item} onClick={(e)=>{ this.handleMenuItemClick(e)}}/>
-                  {item.submenu && <SubMenu items={item.submenu} onClick={(e)=>{ this.handleMenuItemClick(e)}}/> }
+                  {
+                    //TODO: find a better way to handle submenus
+                    //item.submenu && <SubMenu items={item.submenu} onClick={(e)=>{ this.handleMenuItemClick(e)}}/>
+                  }
                 </div>
               )
             })
