@@ -1,4 +1,5 @@
 import './index.css';
+import registerServiceWorker from './registerServiceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
@@ -37,6 +38,4 @@ function onLocationChange(location) {
   });
 }
 
-//Re-add this when https is working.
-//import registerServiceWorker from './registerServiceWorker';
-//registerServiceWorker();
+registerServiceWorker();
