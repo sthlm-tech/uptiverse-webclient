@@ -14,7 +14,7 @@ export const setEmployees = (employees) => ({
 
 export const getEmployees = input => dispatch => {
   dispatch({ type: GET_EMPLOYEES_STARTED });
-  return fetch('http://api.uptiverse.se/api/employees', { credentials: 'include' })
+  return fetch('https://api.uptiverse.se/api/employees', { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON)
     .then(function(json) {

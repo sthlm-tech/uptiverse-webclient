@@ -28,7 +28,7 @@ export const edit = input => dispatch => {
 
 export const getRecruit = id => dispatch => {
   dispatch({ type: GET_RECRUIT_STARTED });
-  return fetch('http://api.uptiverse.se/api/recruits/' + id, { credentials: 'include' })
+  return fetch('https://api.uptiverse.se/api/recruits/' + id, { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON)
     .then(function(json) {
@@ -42,7 +42,7 @@ export const getRecruit = id => dispatch => {
 export const save = input => dispatch => {
   dispatch({ type: SAVE_RECRUIT_STARTED });
   let body = JSON.stringify( input.data );
-  return fetch('http://api.uptiverse.se/api/recruits/save', {
+  return fetch('https://api.uptiverse.se/api/recruits/save', {
       credentials: 'include',
       method: "post",
       headers: new Headers({

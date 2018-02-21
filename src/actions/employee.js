@@ -31,7 +31,7 @@ export const setCanEditEmployee = (user, employee) => ({
 
 export const getEmployee = input => dispatch => {
   dispatch({ type: GET_EMPLOYEE_STARTED });
-  return fetch('http://api.uptiverse.se/api/employees/' + input.id, { credentials: 'include' })
+  return fetch('https://api.uptiverse.se/api/employees/' + input.id, { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON)
     .then(function(json) {
@@ -46,7 +46,7 @@ export const getEmployee = input => dispatch => {
 export const saveEmployee = input => dispatch => {
   dispatch({ type: SAVE_EMPLOYEE_STARTED });
   let body = JSON.stringify( input.data );
-  return fetch('http://api.uptiverse.se/api/employees/save', {
+  return fetch('https://api.uptiverse.se/api/employees/save', {
       credentials: 'include',
       method: "post",
       headers: new Headers({

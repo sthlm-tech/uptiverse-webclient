@@ -19,7 +19,7 @@ export const setNews = (news) => {
 
 export const getNews = input => dispatch => {
   dispatch({ type: GET_NEWS_STARTED });
-  return fetch('http://api.uptiverse.se/api/news', { credentials: 'include' })
+  return fetch('https://api.uptiverse.se/api/news', { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON)
     .then(function(json) {
@@ -32,7 +32,7 @@ export const getNews = input => dispatch => {
 export const saveNews = input => dispatch => {
   dispatch({ type: SAVE_NEWS_STARTED });
   let body = JSON.stringify({ news: input.data });
-  return fetch('http://api.uptiverse.se/api/news/create', {
+  return fetch('https://api.uptiverse.se/api/news/create', {
       credentials: 'include',
       method: "post",
       headers: new Headers({

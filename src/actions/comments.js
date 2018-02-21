@@ -23,7 +23,7 @@ export const setComments = (key, comments) => ({
 export const getComments = (key) => dispatch => {
   if(store.getState().comments[key] && store.getState().comments[key].isLoading){ return; }
   dispatch({ type: GET_COMMENTS_STARTED, key: key });
-  return fetch('http://api.uptiverse.se/api/comments/' + key, { credentials: 'include' })
+  return fetch('https://api.uptiverse.se/api/comments/' + key, { credentials: 'include' })
     .then(checkStatus)
     .then(parseJSON)
     .then(function(json) {
@@ -39,7 +39,7 @@ export const getComments = (key) => dispatch => {
 export const addComment = input => dispatch => {
   dispatch({ type: ADD_COMMENTS_STARTED });
   let body = JSON.stringify( {comment: input.comment} );
-  return fetch('http://api.uptiverse.se/api/comments/' + input.key, {
+  return fetch('https://api.uptiverse.se/api/comments/' + input.key, {
       credentials: 'include',
       method: "post",
       headers: new Headers({
