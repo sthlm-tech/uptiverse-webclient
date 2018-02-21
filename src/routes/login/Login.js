@@ -10,7 +10,7 @@ class Login extends Component {
           <div>
             <p className="description">This is where the magic happens and in order to be a part of the magic you need to login. <br/> Use your Uptive account to sign in.</p>
             <div className="buttonContainer">
-              <a className="loginButton" href="http://authentication.uptiverse.se/authentication/login/google?url=http://beta.uptiverse.se">Sign in</a>
+              <a className="loginButton" href="http://authentication.uptiverse.se/authentication/login/google?url=https://www.uptiverse.se">Sign in</a>
             </div>
           </div>
         </div>
