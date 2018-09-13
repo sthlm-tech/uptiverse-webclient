@@ -21,7 +21,8 @@ class Create extends React.Component {
       key: this.props.commentKey,
       comment: {
         user: this.props.user,
-        text: this.state.comment
+        text: this.state.comment,
+        tags: this.props.tags || []
       }
     });
 

@@ -1,0 +1,22 @@
+.interviewSectionContainer{
+  display: block;
+  margin: 5px 5px 30px 5px;
+  padding:3px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.interViewStepIndicator{
+  margin-top: 25px;
+  font-size: 24px;
+  font-family: var(--font-family-header);
+  font-weight: bold;
+}
+
+.line{
+  border-top: 3px solid var(--color-primary);
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  margin-top: -73px;
+}
