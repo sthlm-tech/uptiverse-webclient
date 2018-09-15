@@ -7,12 +7,12 @@ function Edit({ employee, onChange}) {
   let mail = "";
   let phone = "";
   let github = "";
-  let discord = "";
+  let slack = "";
 
   if(employee.connections.mail){ mail = employee.connections.mail.id };
   if(employee.connections.phone){ phone = employee.connections.phone.id };
   if(employee.connections.github){ github = employee.connections.github.id };
-  if(employee.connections.discord){ discord = employee.connections.discord.id };
+  if(employee.connections.slack){ slack = employee.connections.slack.id };
   return (
     <div className="contactContainer">
       <div>
@@ -20,7 +20,7 @@ function Edit({ employee, onChange}) {
         <div> <FontAwesome className="connection" name='envelope'/> <input className="contactInfo" placeholder="Your email adress" value={mail} data-property="mail" onChange={ (e)=>{ onChange(e) }} /> </div>
         <div> <FontAwesome className="connection" name='phone'/> <input className="contactInfo" placeholder="Your phonenumber" value={phone} data-property="phone" onChange={ (e)=>{ onChange(e) }} /> </div>
         <div> <FontAwesome className="connection" name='github'/> <input className="contactInfo" placeholder="Your github user" value={github} data-property="github" onChange={ (e)=>{ onChange(e) }} /> </div>
-        <div> <FontAwesome className="connection" name='bullhorn'/> <input className="contactInfo" placeholder="Your discord user" value={discord} data-property="discord" onChange={ (e)=>{ onChange(e) }} /> </div>
+        <div> <FontAwesome className="connection" name='slack'/> <input className="contactInfo" placeholder="Your slack user" value={slack} data-property="slack" onChange={ (e)=>{ onChange(e) }} /> </div>
       </div>
     </div>
   );

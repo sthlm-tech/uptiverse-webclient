@@ -14,7 +14,7 @@ class ContactInfo extends React.Component {
           {this.renderEmail()}
           {this.renderPhone()}
           {this.renderGithub()}
-          {this.renderDiscord()}
+          {this.renderSlack()}
         </div>
       </div>
     );
@@ -47,12 +47,12 @@ class ContactInfo extends React.Component {
     </div>);
   }
 
-  renderDiscord(){
-    if(!this.props.employee || !this.props.employee.connections.discord || !this.props.employee.connections.discord.id){return null;}
+  renderSlack(){
+    if(!this.props.employee || !this.props.employee.connections.slack || !this.props.employee.connections.slack.id){return null;}
     return (<div className="contactInfo">
-      <FontAwesome className="connection" name='bullhorn'/>
+      <FontAwesome className="connection" name='slack'/>
       <br/>
-      {this.props.employee.connections.discord.id}
+      {this.props.employee.connections.slack.id}
     </div>);
   }
 }
