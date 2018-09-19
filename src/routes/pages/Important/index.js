@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Layout from './../../../components/Layout';
 import Loader from './../../../components/Loader';
 import PageHeader from './../../../components/PageHeader';
+import { connect } from 'react-redux';
 
 class Important extends Component {
   render() {
@@ -10,11 +11,13 @@ class Important extends Component {
       <Layout>
       <div>
         <PageHeader>This is where you find all the goodies.</PageHeader>
-        <Loader isLoading={false}>
+        <Loader isLoading={this.props.isLoading}>
           <ul>
-            <li>Accountinformation: 123456789</li>
-            <li>Accountinformation: 123456789</li>
-            <li>Accountinformation: 123456789</li>
+            {
+              this.props.important.map((item, index) =>
+                <li key={index}><div dangerouslySetInnerHTML={{__html: item.text}}></div></li>
+              )
+            }
           </ul>
         </Loader>
       </div>
@@ -23,4 +26,15 @@ class Important extends Component {
   }
 }
 
-export default Important;
+const mapStateToProps = state => {
+  return {
+    important: state.pages.important,
+    isLoading: state.pages.isLoading
+  }
+}
+
+const ConnectedImportant = connect(
+  mapStateToProps
+)(Important)
+
+export default ConnectedImportant;

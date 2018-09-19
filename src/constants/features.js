@@ -2,28 +2,28 @@ let features = [
   {
     link: "/pages",
     implemented: true,
-    shouldShow: false,
+    shouldShow: true,
     icon: 'cubes',
     name: 'Pages',
     submenu: [
       {
         link: "/pages/welcome",
         implemented: true,
-        shouldShow: true,
+        shouldShow: false,
         icon: 'heart-o',
         name: 'Welcome to Uptive'
       },
       {
         link: "/pages/uptiverse",
         implemented: true,
-        shouldShow: true,
+        shouldShow: false,
         icon: 'question-circle',
         name: 'About Uptiverse'
       },
       {
         link: "/pages/important",
         implemented: false,
-        shouldShow: false,
+        shouldShow: true,
         icon: 'exclamation-circle',
         name: 'Important information'
       }

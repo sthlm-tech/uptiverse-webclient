@@ -8,6 +8,7 @@ import employees from './employees';
 import recruit from './recruits/recruit';
 import recruits from './recruits/recruits';
 import notifications from './notifications';
+import pages from './pages';
 
 const reducers = combineReducers({
   menus,
@@ -19,6 +20,7 @@ const reducers = combineReducers({
   recruit,
   recruits,
   notifications,
+  pages
 });
 
 export default reducers

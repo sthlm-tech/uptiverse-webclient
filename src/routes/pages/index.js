@@ -3,6 +3,7 @@ import Pages from './Pages';
 import Important from './Important';
 import Welcome from './Welcome';
 import Uptiverse from './Uptiverse';
+import { getImportant } from './../../actions/pages';
 
 export default {
   path: '/pages',
@@ -16,6 +17,7 @@ export default {
     {
       path: '/important',
       async action (context) {
+        context.store.dispatch(getImportant());
         return (<Important />);
       }
     },
