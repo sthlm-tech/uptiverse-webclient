@@ -22,7 +22,7 @@ class RecruitEdit extends Component {
   setConnectionProperty(event){
     var property = event.target.dataset["property"];
     if(property){
-      var modRecruit = this.props.recruit;
+      var modRecruit = {...this.props.recruit};
       modRecruit.connections[property] = event.target.value;
       this.props.edit({recruit: modRecruit, property: property});
     }

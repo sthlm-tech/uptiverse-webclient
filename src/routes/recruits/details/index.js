@@ -1,7 +1,11 @@
 import './details.css';
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import FontAwesome from 'react-fontawesome';
+import Collapsible from 'react-collapsible';
+import InfiniteCalendar from 'react-infinite-calendar';
+import 'react-infinite-calendar/styles.css';
 import Layout from './../../../components/Layout';
 import Loader from './../../../components/Loader';
 import ActionMenu from './../../../components/Action/ActionMenu';
@@ -14,14 +18,32 @@ import ContactInfo from './../../../components/Recruit/ContactInfo';
 import InterviewSection from './../../../components/Recruit/InterviewSection';
 import { formatLinkedInUrl, formatGithubUrl, formatFacebookUrl, formatEmailUrl } from "../../../helpers/connectionFormatHelper";
 import { addComment } from '../../../actions/comments';
+import { setRecruit, setInterviewInprogress, save } from '../../../actions/recruit';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { getCommentKey } from './../../../helpers/referenceIdHelper';
-import _ from 'underscore';
+import { isInInterview, getStep } from './interview-helper';
 
 class Recruit extends Component {
-
+  constructor() {
+    super();
+    this.state = { tabIndex: 0 };
+  }
   handleEditRecruitClicked(){
     history.push("/recruits/"+ this.props.id +"/edit");
+  }
+
+  startInterview(){
+    this.props.startInterview(this.props.recruit)
+  }
+
+  moveForwardInProcess(){
+    var modRecruit = { ... this.props.recruit};
+    modRecruit.interview.currentStep = modRecruit.interview.currentStep + 1 ;
+    this.props.moveForwardInProcess(modRecruit)
+  }
+
+  stepSelected(e, step){
+    this.setState({ tabIndex: 1, scrollToStep: step.id});
   }
 
   render() {
@@ -29,146 +51,119 @@ class Recruit extends Component {
       <Layout>
         <Loader isLoading={this.props.isLoading}>
         <div className="recruitContainer">
-          {this.renderName()}
-          <InterviewSection recruit={this.props.recruit} isInInteview={this.isInInterview(this.props.comments)} step={this.getStep(this.props.comments)}/>
-          <Tabs>
+          <Name recruit={this.props.recruit} />
+          <InterviewSection recruit={this.props.recruit} stepSelected={this.stepSelected.bind(this)} isInInteview={isInInterview(this.props.comments)} step={getStep(this.props.comments)}/>
+          <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
             <TabList>
-
-              <Tab>{this.renderCommentsHeader()}</Tab>
+              <Tab><div className="tabHeader"><CommentsHeader comments={this.props.comments}/></div></Tab>
               <Tab><h3 className="tabHeader">Interview</h3></Tab>
               <Tab><h3 className="tabHeader">Contact</h3></Tab>
             </TabList>
             <TabPanel>
               <Loader isLoading={this.props.isCommentsLoading}>
-                {this.renderCommentsSection()}
+                <CommentsSection
+                  recruit={this.props.recruit}
+                  comments={this.props.comments}
+                  id={this.props.id}
+                  user={this.props.user}
+                  addComment={this.props.addComment}
+                />
               </Loader>
             </TabPanel>
             <TabPanel>
               <Loader isLoading={this.props.isCommentsLoading}>
-                {this.renderInterviewCommentsSection()}
+                {this.renderInterviewSection(this.props.recruit, this.startInterview.bind(this), this.moveForwardInProcess.bind(this))}
               </Loader>
             </TabPanel>
             <TabPanel>
               <ContactInfo recruit={this.props.recruit} />
             </TabPanel>
-
           </Tabs>
         </div>
         </Loader>
-
-        <ActionMenu>
-          { this.renderActionButtonsContianer() }
-        </ActionMenu>
-
+        <ActionButtonContainer
+          recruit={this.props.recruit}
+          edit={this.handleEditRecruitClicked.bind(this)}
+          startInterview={this.startInterview.bind(this)}/>
       </Layout>
     );
   }
 
-  renderName(){
-    if(!this.props.recruit){ return null; }
-    return (<h2>{ this.props.recruit.firstname } { this.props.recruit.lastname }</h2>);
+  componentDidUpdate(nextProps, nextState){
+    const stepNode = ReactDOM.findDOMNode(this.refs[this.state.scrollToStep])
+    if(stepNode){
+     window.scrollTo(0, stepNode.offsetTop);
+    }
   }
 
-  renderConnections(){
-    if(!this.props.recruit){ return null; }
-    var connections = this.props.recruit.connections;
-    var connectionList =[];
-    if(connections.linkedIn){connectionList.push({icon:"linkedin-square", text:formatLinkedInUrl(connections.linkedIn), link: formatLinkedInUrl(connections.linkedIn)})};
-    if(connections.facebook){connectionList.push({icon:"facebook-square", text: formatFacebookUrl(connections.facebook), link: formatFacebookUrl(connections.facebook)})};
-    if(connections.github){connectionList.push({icon:"github-square", text: formatGithubUrl(connections.github), link: formatGithubUrl(connections.github)})};
-    if(connections.phone){connectionList.push({icon:"phone-square", text: connections.phone, link: connections.phone})};
-    if(connections.mail){connectionList.push({icon:"envelope", text: connections.mail, link: formatEmailUrl(connections.mail)})};
-
-    return (
-      <div>
-        {connectionList.map((item, index) => (
-          <div key={index}>
-            <div className="iconContainer"><FontAwesome name={item.icon}/></div>
-            <div className="connectionContainer">
-              <a className="link" href={item.link} target="BLANK">
-                {item.text}
-              </a>
-            </div>
-          </div>
-        ))}
-      </div>
-    );
-  }
-
-  renderCommentsHeader(){
-    if(!this.props.recruit){ return null; }
-    return (
-      <h3 className="tabHeader">Comments <span className="commentBadge"><CountBadge comments={this.props.comments}/></span></h3>
-    );
-  }
-
-  renderCommentsSection(){
-    if(!this.props.recruit){ return null; }
+  renderInterviewSection(recruit, startInterview, moveForwardInProcess){
+    if(!recruit ){ return null; }
+    if(!recruit.interview || !recruit.interview.steps){ return (<div className="interviewSection"><p className="btn" onClick={startInterview}>Start Interview</p></div>); }
     return (
         <div className="commentsSection">
-          <CommentList comments={this.props.comments}/>
-          <CommentCreate commentKey={getCommentKey(this.props.id)} user={this.props.user} addComment={this.props.addComment}/>
+        {
+          recruit.interview.steps.map((item, index) => {
+            const isCurrentStep = recruit.interview.currentStep == index;
+            return (
+              <Collapsible
+                ref={item.id}
+                open={this.state.scrollToStep == item.id}
+                trigger={<div className="interviewHeader"><FontAwesome className="expanderIcon" name='angle-down'/> <CommentsHeader text={item.name} comments={this.props.comments} tag={item.id}/></div>}
+                triggerWhenOpen={<div className="interviewHeader"><FontAwesome className="expanderIcon" name='angle-up'/><CommentsHeader text={item.name} comments={this.props.comments} tag={item.id}/></div>}
+                transitionTime={200}
+                key={index}>
+
+                <div className="interviewDetailsSection">
+                  {isCurrentStep && <ActionButton text="Approve" icon="check" alwaysShow className="btn" onClick={moveForwardInProcess}/>}
+                  {/*<div><h4>Interviewer</h4> <i>comming soon</i></div>
+                  <div><h4>Date</h4> <i>comming soon</i></div> */}
+                </div>
+                <div className="interviewCommentSection">
+                  <h3 className="CommentsHeader">Comments</h3>
+                  <CommentList comments={this.props.comments} tag={item.id}/>
+                  <CommentCreate commentKey={getCommentKey(this.props.id)} user={this.props.user} addComment={this.props.addComment} tags={[item.id]}/>
+                </div>
+              </Collapsible>
+            )
+          })
+        }
         </div>
     );
-  }
-
-  renderInterviewCommentsSection(){
-    if(!this.props.recruit){ return null; }
-    return (
-        <div className="commentsSection">
-          <h3>Interview 1</h3>
-          <div className="interviewCommentSection">
-            <CommentList comments={this.props.comments} tag={"interview-step-1"}/>
-            <CommentCreate commentKey={getCommentKey(this.props.id)} user={this.props.user} addComment={this.props.addComment} tags={["interview-step-1"]}/>
-          </div>
-          <h3>Interview 2</h3>
-          <div className="interviewCommentSection">
-            <CommentList comments={this.props.comments} tag={"interview-step-2"}/>
-            <CommentCreate commentKey={getCommentKey(this.props.id)} user={this.props.user} addComment={this.props.addComment} tags={["interview-step-2"]}/>
-          </div>
-          <h3>Interview 3</h3>
-          <div className="interviewCommentSection">
-            <CommentList comments={this.props.comments} tag={"interview-step-3"}/>
-            <CommentCreate commentKey={getCommentKey(this.props.id)} user={this.props.user} addComment={this.props.addComment} tags={["interview-step-3"]}/>
-          </div>
-        </div>
-    );
-  }
-
-  renderActionButtonsContianer() {
-    if(!this.props.recruit){ return; };
-    return (
-      <div>
-        <ActionButton text="Edit" icon="pencil" onClick={this.handleEditRecruitClicked.bind(this)}/>
-      </div>
-    );
-  }
-
-  isInInterview(comments){
-    var tags = [];
-    for(var i = 0; i < comments.length; i++){
-      var comment = comments[i];
-      if(comment.tags){
-        tags = tags.concat(comment.tags);
-      }
-    }
-    return ( _.indexOf(tags,"interview-step-1") >=0 || _.indexOf(tags,"interview-step-2") >= 0 || _.indexOf(tags,"interview-step-3") >= 0)
-  }
-
-  getStep(comments){
-    var tags = [];
-    for(var i = 0; i < comments.length; i++){
-      var comment = comments[i];
-      if(comment.tags){
-        tags = tags.concat(comment.tags);
-      }
-    }
-    if(_.indexOf(tags,"interview-step-3") >= 0){ return 3;}
-    if(_.indexOf(tags,"interview-step-2") >= 0){ return 2;}
-    if(_.indexOf(tags,"interview-step-1") >= 0){ return 1;}
-    return 0;
   }
 }
+/*components*/
+const ActionButtonContainer = ({recruit, edit, startInterview}) => {
+  if(!recruit){ return null; };
+  return (
+    <ActionMenu>
+      { (!recruit.interview || !recruit.interview.steps) && <ActionButton text="Start interview" icon="rocket" onClick={startInterview}/> }
+      <ActionButton text="Edit recruit info" icon="pencil" onClick={edit}/>
+    </ActionMenu>
+  );
+}
+
+const Name = ({recruit}) => {
+  if(!recruit){ return null; }
+  return (<h2>{ recruit.firstname } { recruit.lastname }</h2>);
+}
+
+const CommentsHeader = ({comments, tag, text}) => {
+  const headerText = text ? text : "All Comments";
+  return (
+    <h3 className="CommentsHeader">{headerText} <span className="commentBadge"><CountBadge comments={comments} tag={tag}/></span></h3>
+  );
+}
+
+const CommentsSection = ({recruit, comments, id, user, addComment}) => {
+  if(!recruit){ return null; }
+  return (
+      <div className="commentsSection">
+        <CommentList comments={comments}/>
+        <CommentCreate commentKey={getCommentKey(id)} user={user} addComment={addComment}/>
+      </div>
+  );
+}
+/**/
 
 const mapStateToProps = (state, ownProps) => {
   const data = state.comments[getCommentKey(ownProps.id)] || {};
@@ -183,7 +178,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addComment: (comment) => { dispatch(addComment(comment)); }
+    addComment: (comment) => { dispatch(addComment(comment)); },
+    moveForwardInProcess: (recruit) => { dispatch(save({data:recruit})); },
+    startInterview: (recruit) => { dispatch(setInterviewInprogress(recruit)); }
   };
 };
 

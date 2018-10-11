@@ -41,7 +41,38 @@ export const getRecruit = id => dispatch => {
 
 export const save = input => dispatch => {
   dispatch({ type: SAVE_RECRUIT_STARTED });
-  let body = JSON.stringify( input.data );
+  let body = JSON.stringify({ recruit: input.data });
+  return fetch('https://api.uptiverse.se/api/recruits/save', {
+      credentials: 'include',
+      method: "post",
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: body
+    })
+    .then(checkStatus)
+    .then(parseJSON)
+    .then(function(recruit){
+      dispatch(setRecruit(recruit));
+    })
+    .catch(function(ex) {
+      dispatch({ type: SAVE_RECRUIT_FAILED });
+    });
+};
+
+export const setInterviewInprogress = input => dispatch => {
+  var recruit = {... input};
+  //TODO: move this to service and call /recruits/:id/interview/start
+  recruit.interview = {
+    steps:[
+      {id:"step1", name:"Interview 1",number:1},
+      {id:"step2",name:"Interview 2",number:2},
+      {id:"step3", name:"Interview 3",number:3}],
+      currentStep: 0
+    }
+
+  dispatch({ type: SAVE_RECRUIT_STARTED });
+  let body = JSON.stringify({ recruit: recruit });
   return fetch('https://api.uptiverse.se/api/recruits/save', {
       credentials: 'include',
       method: "post",

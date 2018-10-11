@@ -1,6 +1,6 @@
 import './List.css';
 import React from 'react';
-import _ from 'underscore';
+import tagFilter from './../tagFilter';
 import Date from './../../Date';
 import Link from './../../Link';
 
@@ -8,17 +8,7 @@ import Link from './../../Link';
 class List extends React.Component {
   render() {
     if(!this.props.comments){ return null; }
-    let comments = [];
-    if(this.props.tag){
-      for(let i = 0; i < this.props.comments.length; i++){
-        var comment = this.props.comments[i];
-        if(comment.tags && _.contains(comment.tags, this.props.tag)){
-          comments.push(comment);
-        }
-      }
-    }else{
-      comments = this.props.comments;
-    }
+    let comments = tagFilter(this.props.comments, this.props.tag);
 
     return (
       <div className="commentBox">

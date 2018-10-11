@@ -6,9 +6,9 @@
   background-color: var(--color-primary-light);
   color: #333;
   border-radius: 20px;
-  display: inline-block;
   text-align: center;
-  margin:5px;
+  margin:8px;
+  clear: right;
 }
 
 .actionbutton:hover{
@@ -17,6 +17,23 @@
 
 .actionbutton:active{
     background-color: #BBBBBB;
+}
+
+.actionbutton:hover .text{
+  visibility: visible;
+}
+
+.text{
+  position: relative;
+  right: 46px;
+  bottom: 38px;
+  text-align: right;
+  float: right;
+  width: 300px;
+}
+
+.hidden{
+  visibility: hidden;
 }
 
 .icon{

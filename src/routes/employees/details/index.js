@@ -19,8 +19,7 @@ class Employee extends Component {
   }
 
   renderActionButtonsContianer(){
-  if(!this.props.employee){ return; };
-  if(!this.props.canEdit){ return; };
+  if(!this.props.employee || !this.props.canEdit){ return; };
   return (
     <div>
       <ActionButton text="Edit" icon="pencil" onClick={this.handleEditEmployeeClicked.bind(this)}/>

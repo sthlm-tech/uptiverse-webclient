@@ -13,10 +13,27 @@
   font-weight: bold;
 }
 
+.interViewNextStep{
+  margin-top: 6px;
+  font-size: 16px;
+  font-family: var(--font-family-header);
+  font-weight: bold;
+}
+
+.stepIndicator{
+  vertical-align: middle;
+}
+
+.stepIndicator:hover{
+  background-color: #F5F5F5;
+}
+
 .line{
   border-top: 3px solid var(--color-primary);
   display: inline-block;
-  vertical-align: middle;
   width: 40px;
-  margin-top: -73px;
+}
+
+.stepContainer{
+  display: inline-block;
 }

@@ -8,6 +8,7 @@ class EditButton extends React.Component {
     text: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     onClick: PropTypes.func,
+    show: PropTypes.bool,
   };
 
   handleClick = (event) => {
@@ -24,9 +25,13 @@ class EditButton extends React.Component {
   };
 
   render() {
+    const className = "actionbutton " + this.props.className;
+    const textClassName = this.props.alwaysShow ? "text" : "text hidden";
     return (
-      <div className="actionbutton" onClick={this.handleClick}>
+      <div className={className} onClick={this.handleClick}>
         <FontAwesome className="icon" name={this.props.icon}/>
+        {!this.props.hideText && <p className={textClassName}>{this.props.text}</p>}
+
       </div>);
   }
 }
