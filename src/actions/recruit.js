@@ -65,10 +65,12 @@ export const setInterviewInprogress = input => dispatch => {
   //TODO: move this to service and call /recruits/:id/interview/start
   recruit.interview = {
     steps:[
-      {id:"step1", name:"Interview 1",number:1},
-      {id:"step2",name:"Interview 2",number:2},
-      {id:"step3", name:"Interview 3",number:3}],
-      currentStep: 0
+      {id:"step1", name:"Interview 1",number:1, status:"ONGOING"},
+      {id:"step2",name:"Interview 2",number:2,status:"NOTSTARTED"},
+      {id:"step3", name:"Interview 3",number:3,status:"NOTSTARTED"}],
+      currentStep: "step1",
+      currentStepIndex: 0,
+      status:"ONGOING"
     }
 
   dispatch({ type: SAVE_RECRUIT_STARTED });

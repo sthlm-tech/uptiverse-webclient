@@ -26,10 +26,13 @@
 .text{
   position: relative;
   right: 46px;
-  bottom: 38px;
+  bottom: 22px;
   text-align: right;
   float: right;
   width: 300px;
+  height: 0px;
+  margin: 0px;
+  padding: 0px;
 }
 
 .hidden{

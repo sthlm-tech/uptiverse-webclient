@@ -102,3 +102,7 @@
 .interviewHeader .commentBadge{
   margin-right: 10px;
 }
+
+.rejectButton{
+  background-color: #E88888;
+}

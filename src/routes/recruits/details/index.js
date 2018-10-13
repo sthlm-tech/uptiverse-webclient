@@ -38,8 +38,26 @@ class Recruit extends Component {
 
   moveForwardInProcess(){
     var modRecruit = { ... this.props.recruit};
-    modRecruit.interview.currentStep = modRecruit.interview.currentStep + 1 ;
+    modRecruit.interview.steps[modRecruit.interview.currentStepIndex].status = "ACCEPTED";
+
+    if(modRecruit.interview.currentStepIndex + 1 >= modRecruit.interview.steps.length){
+      modRecruit.interview.status = "ACCEPTED"
+    }else{
+      modRecruit.interview.currentStepIndex = modRecruit.interview.currentStepIndex + 1 ;
+      var step = modRecruit.interview.steps[modRecruit.interview.currentStepIndex];
+      modRecruit.interview.currentStep = step.id;
+      step.status = "ONGOING";
+
+    }
     this.props.moveForwardInProcess(modRecruit)
+
+  }
+
+  rejectInProcess(){
+    var modRecruit = { ... this.props.recruit};
+    modRecruit.interview.steps[modRecruit.interview.currentStepIndex].status = "REJECTED";
+    modRecruit.interview.status = "REJECTED"
+    this.props.rejectInProcess(modRecruit)
   }
 
   stepSelected(e, step){
@@ -72,7 +90,7 @@ class Recruit extends Component {
             </TabPanel>
             <TabPanel>
               <Loader isLoading={this.props.isCommentsLoading}>
-                {this.renderInterviewSection(this.props.recruit, this.startInterview.bind(this), this.moveForwardInProcess.bind(this))}
+                {this.renderInterviewSection(this.props.recruit, this.startInterview.bind(this), this.moveForwardInProcess.bind(this), this.rejectInProcess.bind(this))}
               </Loader>
             </TabPanel>
             <TabPanel>
@@ -96,14 +114,16 @@ class Recruit extends Component {
     }
   }
 
-  renderInterviewSection(recruit, startInterview, moveForwardInProcess){
+  renderInterviewSection(recruit, startInterview, moveForwardInProcess, rejectInProcess){
     if(!recruit ){ return null; }
     if(!recruit.interview || !recruit.interview.steps){ return (<div className="interviewSection"><p className="btn" onClick={startInterview}>Start Interview</p></div>); }
     return (
         <div className="commentsSection">
         {
           recruit.interview.steps.map((item, index) => {
-            const isCurrentStep = recruit.interview.currentStep == index;
+            const isCurrentStep = recruit.interview.currentStepIndex == index;
+            const isOngoing = recruit.interview.status == "ONGOING";
+            const canTakeAction = isCurrentStep && isOngoing;
             return (
               <Collapsible
                 ref={item.id}
@@ -114,7 +134,8 @@ class Recruit extends Component {
                 key={index}>
 
                 <div className="interviewDetailsSection">
-                  {isCurrentStep && <ActionButton text="Approve" icon="check" alwaysShow className="btn" onClick={moveForwardInProcess}/>}
+                  {canTakeAction && <ActionButton text="Approve" icon="check" alwaysShow className="btn" onClick={moveForwardInProcess}/>}
+                  {canTakeAction && <ActionButton text="Reject" icon="close" alwaysShow className="btn rejectButton" onClick={rejectInProcess}/>}
                   {/*<div><h4>Interviewer</h4> <i>comming soon</i></div>
                   <div><h4>Date</h4> <i>comming soon</i></div> */}
                 </div>
@@ -180,6 +201,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addComment: (comment) => { dispatch(addComment(comment)); },
     moveForwardInProcess: (recruit) => { dispatch(save({data:recruit})); },
+    rejectInProcess: (recruit) => { dispatch(save({data:recruit})); },
     startInterview: (recruit) => { dispatch(setInterviewInprogress(recruit)); }
   };
 };
