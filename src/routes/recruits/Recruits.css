@@ -13,6 +13,14 @@
   display: flex;
 }
 
+.predefinedSearchesContainer {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--max-content-width);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .searchField {
   margin-left: auto;
   margin-right: auto;

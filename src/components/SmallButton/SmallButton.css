@@ -1,0 +1,15 @@
+.SmallButton{
+  background-color: var(--color-primary-light);
+  padding: 4px 9px;
+  border-radius: 16px;
+  height: 16px;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: bold;
+  display: inline;
+  margin: 10px;
+}
+
+.SmallButton:hover{
+  background-color: var(--color-primary);
+}

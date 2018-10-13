@@ -6,6 +6,12 @@ import Layout from './../../components/Layout';
 import Loader from './../../components/Loader';
 import PageHeader from './../../components/PageHeader';
 import ListItem from './../../components/Recruit/ListItem';
+import SmallButton from './../../components/SmallButton';
+
+const onStoredSearchClick =(e) =>{
+  let url = "/recruits/search/" + e.searchQuery;
+  history.push(url);
+}
 
 class Recruits extends Component {
   render() {
@@ -13,6 +19,13 @@ class Recruits extends Component {
       <Layout>
           <div>
             <PageHeader>Find recruits</PageHeader>
+            <div className="predefinedSearchesContainer">
+              <SmallButton text="Interview 1" searchQuery="interview.currentStep:step1" onClick={onStoredSearchClick}/>
+              <SmallButton text="Interview 2" searchQuery="interview.currentStep:step2" onClick={onStoredSearchClick}/>
+              <SmallButton text="Interview 3" searchQuery="interview.currentStep:step3" onClick={onStoredSearchClick}/>
+              <SmallButton text="Accepted" searchQuery="interview.status:ACCEPTED" onClick={onStoredSearchClick}/>
+              <SmallButton text="Rejected" searchQuery="interview.status:REJECTED" onClick={onStoredSearchClick}/>
+            </div>
             <div className="searchFieldContainer">
               <input className="searchField" value={this.props.query} placeholder="Search for a recruit" onChange={(e)=>{ this.onChange(e)}}/>
             </div>
