@@ -9,6 +9,7 @@ const activeStyle = {borderWidth:2};
 const acceptedStyle = {borderWidth:2};
 const ongoingStyle = {borderWidth:2, borderColor:"#ffdd79"};
 const rejectedStyle = {borderWidth:2, borderColor:"#E88888"};
+const recontactStyle = {borderWidth:2, borderColor:"#79c7e6"};
 const inactiveStyle = {borderColor:"#DDDDDD", color:"#AAAAAA"}
 
 export default function({ recruit, stepSelected }) {
@@ -37,6 +38,9 @@ const StepIndicator = ({diameter, step, active, stepSelected, contentClassName})
   var style = (active) ? activeStyle : inactiveStyle;
   if(step.status === "REJECTED"){
     style = rejectedStyle;
+  }
+  else if(step.status === "RECONTACT"){
+      style = recontactStyle;
   }else if(step.status === "ONGOING"){
     style = ongoingStyle;
   }

@@ -42,6 +42,7 @@ class Recruit extends Component {
 
     if(modRecruit.interview.currentStepIndex + 1 >= modRecruit.interview.steps.length){
       modRecruit.interview.status = "ACCEPTED"
+      modRecruit.interview.currentStep = null;
     }else{
       modRecruit.interview.currentStepIndex = modRecruit.interview.currentStepIndex + 1 ;
       var step = modRecruit.interview.steps[modRecruit.interview.currentStepIndex];
@@ -57,7 +58,16 @@ class Recruit extends Component {
     var modRecruit = { ... this.props.recruit};
     modRecruit.interview.steps[modRecruit.interview.currentStepIndex].status = "REJECTED";
     modRecruit.interview.status = "REJECTED"
+    modRecruit.interview.currentStep = null;
     this.props.rejectInProcess(modRecruit)
+  }
+
+  postponeInProcess(){
+    var modRecruit = { ... this.props.recruit};
+    modRecruit.interview.steps[modRecruit.interview.currentStepIndex].status = "RECONTACT";
+    modRecruit.interview.status = "RECONTACT"
+    modRecruit.interview.currentStep = null;
+    this.props.postponeInProcess(modRecruit)
   }
 
   stepSelected(e, step){
@@ -90,7 +100,7 @@ class Recruit extends Component {
             </TabPanel>
             <TabPanel>
               <Loader isLoading={this.props.isCommentsLoading}>
-                {this.renderInterviewSection(this.props.recruit, this.startInterview.bind(this), this.moveForwardInProcess.bind(this), this.rejectInProcess.bind(this))}
+                {this.renderInterviewSection(this.props.recruit, this.startInterview.bind(this), this.moveForwardInProcess.bind(this), this.rejectInProcess.bind(this), this.postponeInProcess.bind(this) )}
               </Loader>
             </TabPanel>
             <TabPanel>
@@ -114,7 +124,7 @@ class Recruit extends Component {
     }
   }
 
-  renderInterviewSection(recruit, startInterview, moveForwardInProcess, rejectInProcess){
+  renderInterviewSection(recruit, startInterview, moveForwardInProcess, rejectInProcess, postponeInProcess){
     if(!recruit ){ return null; }
     if(!recruit.interview || !recruit.interview.steps){ return (<div className="interviewSection"><p className="btn" onClick={startInterview}>Start Interview</p></div>); }
     return (
@@ -136,6 +146,7 @@ class Recruit extends Component {
                 <div className="interviewDetailsSection">
                   {canTakeAction && <ActionButton text="Approve" icon="check" alwaysShow className="btn" onClick={moveForwardInProcess}/>}
                   {canTakeAction && <ActionButton text="Reject" icon="close" alwaysShow className="btn rejectButton" onClick={rejectInProcess}/>}
+                  {canTakeAction && <ActionButton text="Contact later" icon="bookmark" alwaysShow className="btn postponeButton" onClick={postponeInProcess}/>}
                   {/*<div><h4>Interviewer</h4> <i>comming soon</i></div>
                   <div><h4>Date</h4> <i>comming soon</i></div> */}
                 </div>
@@ -202,6 +213,7 @@ const mapDispatchToProps = (dispatch) => {
     addComment: (comment) => { dispatch(addComment(comment)); },
     moveForwardInProcess: (recruit) => { dispatch(save({data:recruit})); },
     rejectInProcess: (recruit) => { dispatch(save({data:recruit})); },
+    postponeInProcess: (recruit) => { dispatch(save({data:recruit})); },
     startInterview: (recruit) => { dispatch(setInterviewInprogress(recruit)); }
   };
 };

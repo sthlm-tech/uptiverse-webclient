@@ -25,6 +25,7 @@ class Recruits extends Component {
               <SmallButton text="Interview 3" searchQuery="interview.currentStep:step3" onClick={onStoredSearchClick}/>
               <SmallButton text="Accepted" searchQuery="interview.status:ACCEPTED" onClick={onStoredSearchClick}/>
               <SmallButton text="Rejected" searchQuery="interview.status:REJECTED" onClick={onStoredSearchClick}/>
+              <SmallButton text="Waitlist" searchQuery="interview.status:RECONTACT" onClick={onStoredSearchClick}/>
             </div>
             <div className="searchFieldContainer">
               <input className="searchField" value={this.props.query} placeholder="Search for a recruit" onChange={(e)=>{ this.onChange(e)}}/>
