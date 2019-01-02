@@ -23,7 +23,7 @@
   visibility: visible;
 }
 
-.text{
+.actionbutton .text{
   position: relative;
   right: 46px;
   bottom: 22px;
